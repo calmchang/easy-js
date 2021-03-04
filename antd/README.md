@@ -90,7 +90,7 @@
     [`list[0]['keyname2']`]: value2
   });
 
-  //✅ antd2 ❌ antd3
+  //✅ antd2 ❌ antd3  
   form.setFieldsValue({
     list: [{ keyname: value, keyname2: value2 }]
   });
@@ -153,7 +153,7 @@
   });
   // ✅ antd2 ✅ antd3  
   form.setFieldsValue({
-    table: [{ type: "2", sub: "sub 2" }]
+    list: [{ type: "2", sub: "sub 2" }]
   });
 
   // ❌ antd2 ❌ antd3  
@@ -196,6 +196,25 @@
   });
 
 ```
+
+
+
+```javascript
+  getFieldDecorator(`list[${index}][0]`)(<Input />)
+  getFieldDecorator(`list[${index}][1]`)(<Input />)
+
+  // ✅ antd2 ✅ antd3  
+  setFieldsValue({
+    [`list[0][0]`]: value1,
+    [`list[0][1]`]: value2
+  });
+
+  // ✅ antd2 ✅ antd3
+  setFieldsValue(
+    list:[[value1,value2]]);
+
+```
+
 
 
 * 操作Form.Item时机的问题1：条件渲染

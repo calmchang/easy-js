@@ -166,15 +166,15 @@ toRawType(new Father() ) // Object
     * === 比较的时候不会进行类型转换
     
 * 几种需要特别注意的转换结果:
-  * Number('f') :  NaN
-  * Number('')/Number(' ')/Number(null): 0
+  * Number('f') = NaN
+  * Number(''),Number(' '),Number(null)=0
   * Boolean(-1)/Boolean(''): false
   * Boolean({})/Boolean(' ')：true
   * String({}): "[object Object]"
 
 * 什么时候触发类型转换
   当2个变量遇见 >、<、==、加减乘除、||、&& 时
-* 转换为 什么？
+* 转换规则
   * 规则：优先转换数值，不行再转字符串
   * 字符串==数值：字符串转数值
   * 字符串==对象：对象转换为字符串

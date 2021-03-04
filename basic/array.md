@@ -56,26 +56,27 @@ console.log(arr);
 > fill在填充的时候只是将数组空间内的内容指向 fill对象的指针，并不是重新申请了对象，所以要慎用对象、数组去填充
 
 ##### 数组之间计算
+
+* 交集:2个数组内都有的则算
 ~~~javascript
-//交集:	2个数组内都有的则算
 var arr1=[1,2,3];
 var arr2=[1,4,5,2];
 arr1.filter( (v)=>arr2.includes(v) ) //[1,2]
 ~~~
+* 差集:属于数组A，不属于数组B的
 ~~~javascript
-//差集: 属于数组A，不属于数组B的
 var arr1=[1,2,3];
 var arr2=[1,4,5,2];
 arr1.filter( (v)=>!arr2.includes(v) )//[3]
 ~~~
+* 并集:2个数组内不重复的都算
 ~~~javascript
-//并集: 	2个数组内不重复的都算
 var arr1=[1,2,3];
 var arr2=[1,4,5,2];
 [...new Set( [...arr1,...arr2] ) ]//[1,2,3,4,5]
 ~~~
+* 补集:2个数组内重复的则不要
 ~~~javascript
-//补集：2个数组内重复的则不要
 var arr1=[1,2,3];
 var arr2=[1,4,5,2];
 [...arr1.filter( (v)=>!arr2.includes(v) ) , ...arr2.filter( (v)=>!arr1.includes(v) ) ] //[3,4,5]
