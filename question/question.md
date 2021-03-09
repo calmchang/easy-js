@@ -1,4 +1,5 @@
 
+## 基础
 ### @使taskA和taskB并发执行，并当A、B、C三个任务全部执行完毕后返回  
 ```javascript
 async function task(){
@@ -52,40 +53,6 @@ test1(1,2,3,4,5)
 test2(1,2,3,4,5,6)
 ```
 
-### @函数式组件中 父组件如何调用子组件的方法 useImperativeHandle + forwardRef
-
-### @并发调用setState后的值  
-```javascript
-class Test extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state={
-      count:0
-    }
-  }
-  add(){
-    setState({count:this.state.count+1});
-    console.log(this.state.count);
-    //当多处同时调用add时会怎样？
-  }
-
-  reduc(){
-    setTimeout(() => {
-      this.setState({count:this.state.count-1},()=>{this.setState({count:999})});
-      this.setState({count:this.state.count-1},()=>{this.setState({count:this.state.count-1})});
-      this.setState({count:this.state.count-1});
-      console.log(this.state.count);
-      //输出996，这里的setState是阻塞式执行，每一行setState执行完自己后，跳入下一行执行
-    },0);
-    
-    
-  }
-
-
-}
-```
-
-
 ### mixin、@extend、@include、%item、@function 区别？
 
 
@@ -124,3 +91,68 @@ class Test extends React.Component {
     </script>
   </body>
 ```
+
+
+### @webpack层面优化项目能做哪些？
+
+### @项目中遇到的困难及解决过程？
+
+### 如何优化首屏时间？
+
+### 页面自适应策略？
+
+## React
+### @函数式组件中 父组件如何调用子组件的方法 useImperativeHandle + forwardRef
+
+### @并发调用setState后的值  
+```javascript
+class Test extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      count:0,
+      family:{
+        father:{name:'aa'},
+        son:{name:'cc'}
+      }
+    }
+  }
+
+  changeName(){
+    this.setState({
+      family:{
+        son:{name:'x'}
+      }
+    });
+    console.log(this.state);
+  }
+
+  add(){
+    setState({count:this.state.count+1});
+    console.log(this.state.count);
+    //当多处同时调用add时会怎样？
+  }
+
+
+  reduc(){
+    setTimeout(() => {
+      this.setState({count:this.state.count-1},()=>{this.setState({count:999})});
+      this.setState({count:this.state.count-1},()=>{this.setState({count:this.state.count-1})});
+      this.setState({count:this.state.count-1});
+      console.log(this.state.count);
+      //输出996，这里的setState是阻塞式执行，每一行setState执行完自己后，跳入下一行执行
+    },0);
+    
+  }
+
+
+}
+```
+
+
+### @react-router如何做到页面的缓存及页面切换的过场动画
+
+### @平时如何调试react项目？渲染效率？多余渲染？耗时？
+
+
+### @如何改写antd的全局样式比较合理？比如所有组件的基础高度，less javascriptEnabled

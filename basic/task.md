@@ -61,3 +61,22 @@ function callMe() {
 * setImmediate():消耗的资源小，也不会造成阻塞，但效率也是最低的。用的是check观察者
 
 > 三种观察者的优先级顺序是：idle观察者>>io观察者>check观察者
+
+
+
+#### 宏任务  
+#|浏览器|node
+--|:--:|--:
+I/O|✅|✅
+setTimeout|✅|✅
+setInterval|✅|✅
+setImmediate|❌|✅
+requestAnimationFrame|✅|❌
+
+### 微任务  
+#|浏览器|node
+--|:--:|--:
+I/O|✅|✅
+process.nextTick|❌|✅
+Mulationobserver|✅|❌
+Promise.then catch finally|✅|✅

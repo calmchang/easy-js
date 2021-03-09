@@ -21,6 +21,7 @@
   * [常用样式](/css/demo.md)
   * [字体](/css/font.md)
 * 浏览器
+  * [常用错误码](/browser/errorCode.md)
   * [https和ssl证书](/browser/https.md)
 * 项目构建及规范
   * [构建打包](/build/build.md)
@@ -32,6 +33,7 @@
 * vscode
   * [快捷键](/vscode/README.md)
 * react
+  * [生命周期](/react/life.md)
   * [react-route](/react/reactRoute.md)
   * [渲染](/react/render.md)
   * [state](/react/state.md)
@@ -39,6 +41,10 @@
   * [router](/vue/router.md)
 * webpack
   * [webpack](/webpack/README.md)
+* 常见第三方库
+  * [qs](/plugins/qs.md)
+* 正则表达式
+  * [正则](/reg/readme.md)
 
 * [Antd](/antd/README.md)
 

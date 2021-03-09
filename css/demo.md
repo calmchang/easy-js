@@ -55,10 +55,33 @@
     }
 ```
 
+#### 修改滚动条样式  
+```css
+//整体
+::-webkit-scrollbar{
+  width:10px;//滚动条宽度
+  background:red;//滚动条颜色
+  display:block;//强制一直显示
+}
+//整个滚动条的轨道
+::-webkit-scrollbar-track
+{
+  width: 3px;
+  background-color: #F5F5F5;//整个滚动条背景颜色
+}
+//滚动条当前可拖动的bar的样式
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #D62929;
+}
+```
+
 #### 图片保持宽高比居中自动裁剪填充
 
 ```css
 img{
-  object-fill:cover;
+  object-fit:cover;
 }
 ````
