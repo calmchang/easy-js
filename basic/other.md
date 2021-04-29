@@ -117,3 +117,9 @@ fn1.call.call(fn2); // 2
 new Intl.NumberFormat(["zh-CN"],{maximumFractionDigits:2}).format(123456.1264);//"123,456.13"
 ~~~
 
+
+##### import\.meta
+
+import.meta是一个给JavaScript模块暴露特定上下文的元数据属性的对象。它包含了这个模块的信息，比如说这个模块的URL。 
+
+`console.log(import.meta); // { url: "file:///home/user/my-module.mjs" }`

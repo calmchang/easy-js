@@ -11,6 +11,8 @@
   * [算法](/basic/algorithmic.md)
   * [设计模式](/basic/model.md)
   * [Promise](/basic/promise.md)
+  * [iframe](/basic/iframe.md)
+  * [meta标签](/basic/meta.md)
 * Dom
   * [事件](/dom/event.md)
   * [元素](/dom/element.md)
@@ -37,6 +39,7 @@
   * [react-route](/react/reactRoute.md)
   * [渲染](/react/render.md)
   * [state](/react/state.md)
+  * [其它](/react/others.md)
 * vue
   * [router](/vue/router.md)
 * webpack

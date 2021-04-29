@@ -284,6 +284,35 @@ return (
 )
 ```
 
+* antd2-antd3下getFieldsValue和getFieldValue的选择
+  
+  当我们有一个LIST表单大致如下：
+  ```javascript
+    getFieldDecorator(`LIST[${index}].id`)(<Input type='text' />)
+    getFieldDecorator(`LIST[${index}].name`)(<Input type='text' />)
+    ......
+  ```
+  当我们需要获取这个LIST值的时候，通常有2种方法：  
+  1、`getFieldsValue().LIST`  
+  2、`getFieldValue('LIST')`  
+  
+  建议尽量使用方法1，因为在使用方法2的时候，此时如果LIST还未被创建完毕，则会造成filedMeta被默认创建出一个`LIST:{}`,而当我们使用`LIST[0].name`去创建表单的时候则会被警告，该表单名包含了另一个表单名`One field name cannot be part of another, e.g. `a` and `a.b`. Check field: ` 
+
+  ```javascript
+    let curData = getFieldsValue()['LIST'];//✅good
+    let curData = getFieldsValue('LIST');//❌not good
+    getFieldDecorator(`LIST[${index}].id`)(<Input type='text' />)
+    getFieldDecorator(`LIST[${index}].name`,
+    {
+      onChange:()=>{
+        if(curData[index].id==='1'){
+          //....
+        }
+      }
+    })(<Input type='text' />)
+   
+  ```
+
 #### @InputNumber
 
 环境:antd3  
