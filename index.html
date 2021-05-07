@@ -39,9 +39,10 @@
 
 
   <script>
+    var ms = Date.now();
     window.$docsify = {
       name: 'inter',
-      repo: '',
+      repo: 'https://github.com/calmchang/easy-js',
       loadSidebar:true,
       search:'auto',
       search: {
@@ -51,6 +52,8 @@
         paths:'auto',
         hideOtherSidebarContent:false
       },
+      formatUpdated:'{YYYY}/{MM}/{DD} {HH}:{mm}',
+      ext:`.md?ms=${ms}`,
       markdown: {
         renderer:{
           code:function(code,lang){

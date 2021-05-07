@@ -1,5 +1,9 @@
 # 
 
+# 版本：v1.0.2
+##### 最后更新时间  {docsify-updated}   
+
+
 ![antd](https://img.shields.io/badge/ant--desigin-2.x~3.x-blue)
 ![node](https://img.shields.io/badge/node-%3E%3D8-green)
 
@@ -268,18 +272,6 @@ fi
 ]
 ```
 
-#### mermaid图表
-
-> 参考 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW0NocmlzdG1hc10gLS0-fEdldCBtb25leXwgQihHbyBzaG9wcGluZylcbiAgICBCIC0tPiBDe0xldCBtZSB0aGlua31cbiAgICBDIC0tPnxPbmV8IERbTGFwdG9wXVxuICAgIEMgLS0-fFR3b3wgRVtpUGhvbmVdXG4gICAgQyAtLT58VGhyZWV8IEZbZmE6ZmEtY2FyIENhcl1cbiAgICAgICAgICAgICIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9
-```mermaid
-    graph TB
-    A[根节点] --> B[子节点]
-    B --> C(左节点)
-    B --> D[右节点]
-    B --> E((右节点2))
-    G --经过--> F[右节点]
-    G -.经过.-> H[右节点]
-```
 
 # 这是一级标题
 ## 这是二级标题
@@ -336,6 +328,16 @@ fi
 关羽|打|二哥
 张飞|骂|三弟
 
-#### 流程图
+#### 流程图 - mermaid图表
 
 
+> 参考 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW0NocmlzdG1hc10gLS0-fEdldCBtb25leXwgQihHbyBzaG9wcGluZylcbiAgICBCIC0tPiBDe0xldCBtZSB0aGlua31cbiAgICBDIC0tPnxPbmV8IERbTGFwdG9wXVxuICAgIEMgLS0-fFR3b3wgRVtpUGhvbmVdXG4gICAgQyAtLT58VGhyZWV8IEZbZmE6ZmEtY2FyIENhcl1cbiAgICAgICAgICAgICIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9
+```mermaid
+    graph TB
+    A[根节点] --> B[子节点]
+    B --> C(左节点)
+    B --> D[右节点]
+    B --> E((右节点2))
+    G --经过--> F[右节点]
+    G -.经过.-> H[右节点]
+```
