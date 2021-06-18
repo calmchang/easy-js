@@ -27,7 +27,10 @@
   * [https和ssl证书](/browser/https.md)
 * 项目构建及规范
   * [构建打包](/build/build.md)
-
+  * [Shell脚本常用功能](https://www.jianshu.com/p/16ad8bef9f21)
+  * [Gulp](/build/gulp.md)
+  * [webpack](/build/webpack.md)
+  * [Nginx](/build/nginx.md)
 * 移动端兼容
   * [IOS](/ios/README.md)
   * [Android](/android/README.md)
@@ -42,8 +45,6 @@
   * [其它](/react/others.md)
 * vue
   * [router](/vue/router.md)
-* webpack
-  * [webpack](/webpack/README.md)
 * 常见第三方库
   * [qs](/plugins/qs.md)
 * 正则表达式
