@@ -22,8 +22,11 @@ async function task(){
 
 ### this是谁?  
 ```javascript
-var myobj={
+var x={
   name:'tom',
+  fn1:function(){
+    console.log(this);
+  },
   fn2:()=>{
     console.log(this);
   },
@@ -35,14 +38,37 @@ var myobj={
     return ()=>{ console.log(this) };
   }
 }
-myobj.fn2();
-myobj.fn3();
-myobj.fn4()();
-myobj.fn4.call({name:'cc'})();
-myobj.fn2.call({name:'cc'});
-myobj.fn3.call({name:'cc'});
-var temp = myobj.fn3;
+
+x.fn1();
+var temp = x.fn1;
 temp();
+
+x.fn2();
+var temp = x.fn2;
+temp();
+
+x.fn3();
+var temp = x.fn3;
+temp();
+
+x.fn1.call({name:'cc'});
+x.fn2.call({name:'cc'});
+x.fn3.call({name:'cc'});
+
+x.fn4()();
+x.fn4.call({name:'cc'})();
+
+
+function Car(name,color){
+  this.name=name;
+  this.color=color;
+  this.getName=function(){return `${this.name}`}
+  this.getColor=()=>{return `${this.color}`}
+}
+var car = new Car('123','red');
+car.getName();
+car.getColor();
+
 ```
 
 ### @完成test1和test2函数，打印所有传入的参数值  

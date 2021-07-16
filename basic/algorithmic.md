@@ -61,12 +61,16 @@ async wide(node,fn){
 function run(fn,ms){
   let tm=null;
   return function(){
-    clearTimeout(tm);
+    if(tm){console.log('触发防抖');clearTimeout(tm);}
     tm=setTimeout(()=>{
       fn.apply(this, arguments);
     },ms)
   }
 }
+var fn = run(e=>console.log('触发任务'),2000);
+fn();
+fn();
+fn();
 ~~~
 
 ##### 节流
@@ -85,6 +89,10 @@ function run(fn,ms){
     },ms)
   }
 }
+var fn = run(e=>console.log('触发任务'),2000);
+fn();
+fn();
+fn();
 ~~~
 
 ##### 优化版冒泡排序

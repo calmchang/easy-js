@@ -31,6 +31,7 @@
   * [Gulp](/build/gulp.md)
   * [webpack](/build/webpack.md)
   * [Nginx](/build/nginx.md)
+  * [Npm](/build/npm.md)
 * 移动端兼容
   * [IOS](/ios/README.md)
   * [Android](/android/README.md)
