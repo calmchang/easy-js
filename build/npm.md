@@ -35,4 +35,4 @@ npm unpublish 包名@版本号
 
 
 ##### 删除整个包
-* npm force-unpublish 包名 '原因'
+* npm --force unpublish 包名

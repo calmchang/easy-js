@@ -1,5 +1,15 @@
 
-## 基础
+## =====基础=====
+
+### 跨域设置问题
+
+```javascript
+var xhr=new XMLHttpRequest()
+xhr.withCredential=true;//此选项作用？设置后跨域配置有什么区别？
+xhr.open('POST','跨域接口');
+xhr.send();
+```
+
 ### @使taskA和taskB并发执行，并当A、B、C三个任务全部执行完毕后返回  
 ```javascript
 async function task(){
@@ -19,55 +29,54 @@ async function task(){
 
 ### @正则表达式  
 将手机号码 13712345678 用正则表达式转换成 137-1234-5678 格式
+> '13712345678'.replace(/(\d{3})(\d{4})(\d{3})/,'$1-$2-$3')
 
 ### this是谁?  
 ```javascript
+
 var x={
   name:'tom',
   fn1:function(){
     console.log(this);
   },
+}
+x.fn1();
+var temp = x.fn1;
+temp();
+x.fn1.call({name:'cc'});
+
+var x={
+  name:'tom',
   fn2:()=>{
     console.log(this);
-  },
+  }
+}
+x.fn2();
+var temp = x.fn2;
+temp();
+x.fn2.call({name:'cc'});
+
+var x={
+  name:'tom',
   fn3:function(){
     let temp=()=>{ console.log(this) };
     temp();
-  },
+  }
+}
+x.fn3();
+var temp = x.fn3;
+temp();
+x.fn3.call({name:'cc'});
+
+var x={
+  name:'tom',
   fn4:function(){
     return ()=>{ console.log(this) };
   }
 }
-
-x.fn1();
-var temp = x.fn1;
-temp();
-
-x.fn2();
-var temp = x.fn2;
-temp();
-
-x.fn3();
-var temp = x.fn3;
-temp();
-
-x.fn1.call({name:'cc'});
-x.fn2.call({name:'cc'});
-x.fn3.call({name:'cc'});
-
 x.fn4()();
 x.fn4.call({name:'cc'})();
 
-
-function Car(name,color){
-  this.name=name;
-  this.color=color;
-  this.getName=function(){return `${this.name}`}
-  this.getColor=()=>{return `${this.color}`}
-}
-var car = new Car('123','red');
-car.getName();
-car.getColor();
 
 ```
 
@@ -80,8 +89,6 @@ test2(1,2,3,4,5,6)
 ```
 
 ### mixin、@extend、@include、%item、@function 区别？
-
-
 
 ### @事件传递机制  
 * 如何改动能分别输出：
@@ -119,7 +126,7 @@ test2(1,2,3,4,5,6)
 ```
 
 
-### @webpack层面优化项目能做哪些？
+
 
 ### @项目中遇到的困难及解决过程？
 
@@ -127,7 +134,13 @@ test2(1,2,3,4,5,6)
 
 ### 页面自适应策略？
 
-## React
+### iframe父子之间通信，如何做适配？
+
+### static  relative 区别
+
+### 跨域cookie解决方案
+
+## =====React=====
 ### @函数式组件中 父组件如何调用子组件的方法 useImperativeHandle + forwardRef
 
 ### @并发调用setState后的值  
@@ -175,19 +188,46 @@ class Test extends React.Component {
 }
 ```
 
-
 ### @react-router如何做到页面的缓存及页面切换的过场动画
 
 ### @平时如何调试react项目？渲染效率？多余渲染？耗时？
+useMemo useCallback
 
 
+## =====Antd=====
 ### @如何改写antd的全局样式比较合理？比如所有组件的基础高度，less javascriptEnabled
 
 
-### iframe父子之间通信，如何做适配？
 
-### static  relative 区别
+## =====webpack=====
 
-### 跨域cookie解决方案
 
-### 
+
+### @webpack解释下下面这段配置的结果
+```javascript
+splitChunks: {
+  cacheGroups: {
+    modules: {
+      test: /(node_modules)/,
+      priority: 2,
+      name:"modules",
+      chunks:'all',
+      enforce:true
+    },
+    default: {
+      name:'default',
+      minChunks: 2,
+      priority: 1,
+      chunks:'all',
+      enforce:true
+    }
+  },
+},
+plugins:[
+ new HtmlWebpackPlugin({
+    template:path.join(__dirname,'index.html'),filename:'index.html',inject:true
+  }),
+]
+```
+
+### @webpack层面优化项目能做哪些？
