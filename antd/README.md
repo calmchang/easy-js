@@ -37,6 +37,12 @@
 
 ![image.png](http://img.vuedata.cn/selectOptionLabelProp.png)
 
+
+* placeholder无效  
+当配合Form.Item使用时，如果初始值value为''或者null时会导致select的placeholder无效
+解决方法：设置初始值为具体的值或undefined
+
+
 #### @Table
 * scroll
   使用了scroll:{y:xx}后造成标题栏不对齐的问题，需要设置每一列的width属性并且最好是百分比

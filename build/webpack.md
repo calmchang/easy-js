@@ -1,4 +1,46 @@
 
+## tree-shake
+
+使用es6模块引用的代码，webpack在打包时经过TerserPlugin或其他压缩代码插件时会进行tree-shake把没有使用的模块代码剔除
+
+```javascript
+// math.js
+const add=(a,b)=>{}
+const div=(a,b)=>{}
+
+export {
+  add,div
+}
+export default {
+  add,div
+}
+```
+
+
+```javascript
+// main.js
+
+// 案例1：以下代码打包后div会被剔除
+import {add} from 'math.js'
+add(1,2);
+
+// 案例2：以下代码打包后div由于没有实际引用，也会被剔除
+import {add,div} from 'math.js'
+add(1,2);
+
+// 案例3：以下代码打包后2个方法都将被保留
+import {add,div} from 'math.js'
+add(1,2);
+div;
+
+// 案例4：以下代码打包后2个方法都将被保留,因为Math对象的导出包含了add和div，所以无法单独tree-shake
+import Math from 'math.js'
+Math.add(1,2);
+
+```
+
+
+
 ## 常用插件
 #### @DefinePlugin
 在编译阶段定义常量
