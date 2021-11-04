@@ -328,6 +328,20 @@ fi
 关羽|打|二哥
 张飞|骂|三弟
 
+#### 超链接
+
+[点我跳转](https://codesandbox.io/s/useswitch-qd7dr?file=/index.js)
+
+<https://codesandbox.io/s/useswitch-qd7dr?file=/index.js>
+
+#### 图片
+
+![codesandbox](http://img.vuedata.cn/codesandboxicon1.png?imageMogr2/thumbnail/!30x)
+#### 图片超链接
+
+[![codesandbox](http://img.vuedata.cn/codesandboxicon1.png?imageMogr2/thumbnail/!30x)](https://codesandbox.io/s/useswitch-qd7dr?file=/index.js)
+
+
 #### 流程图 - mermaid图表
 
 
