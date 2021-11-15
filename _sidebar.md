@@ -13,6 +13,9 @@
   * [Promise](/basic/promise.md)
   * [iframe](/basic/iframe.md)
   * [meta标签](/basic/meta.md)
+  * [二进制Blob/ArrayBuffer/File](/basic/blob.md)
+  * [字符编码](/basic/charcode.md)
+
 * Dom
   * [事件](/dom/event.md)
   * [元素](/dom/element.md)

@@ -1,15 +1,6 @@
 
 ## =====基础=====
 
-### 跨域设置问题
-
-```javascript
-var xhr=new XMLHttpRequest()
-xhr.withCredential=true;//此选项作用？设置后跨域配置有什么区别？
-xhr.open('POST','跨域接口');
-xhr.send();
-```
-
 ### @使taskA和taskB并发执行，并当A、B、C三个任务全部执行完毕后返回  
 ```javascript
 async function task(){
@@ -22,9 +13,9 @@ async function task(){
 
 ### @输出结果是？为什么？涉及类型转换  
 ```javascript
-  if(""){console.log(true)}
-  if([]){console.log(true)}
-  console.log([]=="");
+  if(""){console.log(true)} // false
+  if([]){console.log(true)} // true
+  console.log([]==""); // true
 ```
 
 ### @正则表达式  
@@ -45,6 +36,7 @@ var temp = x.fn1;
 temp();
 x.fn1.call({name:'cc'});
 
+// ==============================================
 var x={
   name:'tom',
   fn2:()=>{
@@ -55,6 +47,8 @@ x.fn2();
 var temp = x.fn2;
 temp();
 x.fn2.call({name:'cc'});
+
+// ==============================================
 
 var x={
   name:'tom',
@@ -68,6 +62,7 @@ var temp = x.fn3;
 temp();
 x.fn3.call({name:'cc'});
 
+// ==============================================
 var x={
   name:'tom',
   fn4:function(){
@@ -89,6 +84,7 @@ test2(1,2,3,4,5,6)
 ```
 
 ### mixin、@extend、@include、%item、@function 区别？
+
 
 ### @事件传递机制  
 * 如何改动能分别输出：
@@ -130,15 +126,35 @@ test2(1,2,3,4,5,6)
 
 ### @项目中遇到的困难及解决过程？
 
-### 如何优化首屏时间？
+### 如何优化首屏时间？loaded,domloaded
 
-### 页面自适应策略？
+### 页面自适应策略？使用rem的注意事项？
 
 ### iframe父子之间通信，如何做适配？
 
 ### static  relative 区别
 
-### 跨域cookie解决方案
+### @跨域设置问题、跨域cookie解决方案
+
+```javascript
+var xhr=new XMLHttpRequest()
+xhr.withCredential=true;//此选项作用？设置后跨域配置有什么区别？
+xhr.open('POST','跨域接口');
+xhr.send();
+```
+
+![](http://img.vuedata.cn/iframecros.jpg)
+
+1、你本地调试的站点地址为 `http://localhost:3000`     
+2、你需要调用的接口域名为 `http://api.test.com`  
+问题一：本地调试时如何可以跨域调用？
+问题二：  
+  此时你站点内嵌了一个iframe，打开了 `http://app.b.com/` 的站点，而`app.b.com`内会调用 `api.b.com` 的接口    
+  此时有什么问题嘛？
+
+
+
+### 如何将一个文件上传给后端？blob相关
 
 ## =====React=====
 ### @函数式组件中 父组件如何调用子组件的方法 useImperativeHandle + forwardRef
@@ -194,14 +210,55 @@ class Test extends React.Component {
 useMemo useCallback
 
 
+### @redux在什么情况下用？有什么可以代替方案么？
+
+
 ## =====Antd=====
 ### @如何改写antd的全局样式比较合理？比如所有组件的基础高度，less javascriptEnabled
 
 
+## =======Vue=======
 
-## =====webpack=====
+### @分组懒加载  
+```javascript
+let tabHome = () => import( /* webpackChunkName: "group-home" */ '@/pages/index/home');
+```
 
+### @页面缓存  
+1、用Vuex内设置一个cacheList[]数组，存放需要缓存的页面名称
+2、router内通过钩子拦截页面跳转计算哪些页面需要keepAlive，管理cacheList  
 
+```javascript
+
+router.beforeEach((to, from, next) => {
+  console.log(`before each ${from.name}->${to.name}`);
+  if (to.meta && to.meta.keepAlive) {
+    Vue.prototype.$store.commit("addCache", to.name);
+  }
+
+  if (to.query && to.query.removeCache) {
+    Vue.prototype.$store.commit("removeCache", from.name);
+  }
+});
+```
+3、结合keepAlive include
+```javascript
+<keep-alive :include="cachedViews">
+  ...
+</keep-alive>
+
+computed: {
+    cachedViews() {
+      return this.$store.state.cacheView;
+    },
+  },
+```
+
+## =====设计架构=====
+
+### @设计一个toast组件需要注意点什么？
+
+### @webpack、rollup区别？
 
 ### @webpack解释下下面这段配置的结果
 ```javascript
@@ -231,3 +288,13 @@ plugins:[
 ```
 
 ### @webpack层面优化项目能做哪些？
+
+
+## ======综合======
+
+* @自己解决过什么比较有技术难度的问题？
+* @平时关注哪些公众号？
+* @说说做公众号H5开发要接入哪些功能？
+* @站点的统计用什么？
+* @职业发展方向？
+* @与同事利益有冲突时怎么抉择？比如2选1的晋升
