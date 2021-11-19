@@ -39,6 +39,138 @@ Math.add(1,2);
 
 ```
 
+## 如何在引用第三方库的时候也能利用tree-shake
+
+假设有一个第三方库名字叫：`my-math`,其中内容如下
+
+目录结构：
+* my-math\
+  * src
+    * addMath
+      * index.js
+    * subMath
+      * index.js
+    * index.js //入口
+  * package.json
+  
+源代码：
+
+```javascript
+// addMath/index.js
+function addMath(a,b){
+  return a+b;
+}
+export default addMath;
+
+```
+
+```javascript
+// subMath/index.js
+function subMath(a,b){
+  return a-b;
+}
+export default subMath;
+
+```
+
+```javascript
+// index.js
+
+export {default as addMath} from './addMath';
+export {default as subMath} from './subMath';
+
+// 以上方式暴露方法或下面的方式，效果是一样的
+// import addMath from './addMath';
+// import subMath from './subMath';
+// export default {
+//   addMath,subMath
+// }
+
+```
+
+接下来现在我们项目中通过npm安装了`my-math`包,并使用了其中部分模块
+
+```javascript
+// project.js
+
+// 只使用到了add模块
+import {addMath} from 'my-math';
+console.log( addMath(1,2) );
+```
+
+此时打包后的结果的确只是将`addMath`部分抽离出来
+
+现在我们修改一下`subMath`模块代码,我们模拟在这个代码模块中又引用了一个第三方模块`clipboard`
+
+```javascript
+// subMath/index.js
+import ClipboardJS from 'clipboard';
+function subMath(a,b){
+  let t = new ClipboardJS();
+  console.log(t);
+  return a-b;
+}
+export default subMath;
+
+```
+
+此时打包后的项目也不存在`subMath`模块中代码，但是`clipboard`的代码却被打包进去了
+
+我们尝试换一种方法引用模块
+
+```javascript
+// project.js
+
+// 只使用到了addMath模块
+import addMath from 'my-math/src/addMath';
+console.log( addMath(1,2) );
+```
+
+此时打包后发现`subMath`和`clipboard`没有被打进去，所以我们想要达到tree-shake我们需要通过直接引用目标模块的代码来实现
+实现方法有2种
+1、如上面的解决方法，我们手动指明代码模块的路径，这样编码风格不太友好
+2、在webpack中使用`babel-plugin-import`插件，自动将import代码进行转义,具体参数可以参考npm上的文档，我们以刚才的项目为例在babel plugins内增加import插件的配置
+```javascript
+// webpack.config.js
+rules: [
+  {
+    test: /\.js[x]?$/,
+    exclude: /node_modules/,
+    use: {
+      loader:'babel-loader',
+      options:{
+          plugins: [
+            [
+              // 重点
+              "import", { 
+                // 检查匹配到引用my-math库时触发
+                libraryName: "my-math" ,
+
+                // 代表转换后会引用 库名/src目录下/模块名/index.js
+                // src: import addMath from 'my-math' -> import addMath from 'my-math/src/add-math/'
+                // js: import addMath from 'my-math' -> import addMath from 'my-math/js/add-math/'
+                // aaa: import addMath from 'my-math' -> import addMath from 'my-math/aaa/add-math/'
+                libraryDirectory:"src",
+
+                // true: import addMath from 'my-math' -> import addMath from 'my-math/src/add-math/'
+                // false: import addMath from 'my-math' -> import addMath from 'my-math/src/addMath/'
+                camel2DashComponentName:false,
+
+                // 代表需要同时引用该模块的css对应的目录 
+                // css: import from 'my-math/addMath/style/css/index.css'
+                // true: import from 'my-math/addMath/style/index.css'
+                // aaa: import from 'my-math/addMath/style/aaa/index.css'
+                style: 'css',
+              }
+            ]
+          ]
+      }
+    }
+  }
+]
+
+```
+
 
 
 ## 常用插件
