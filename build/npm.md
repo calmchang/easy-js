@@ -10,11 +10,19 @@ npm是随node一起安装的，无需单独安装
 * 查看线上最新包的版本号：`npm view 包名 version`
 * npm upgrade 包名@版本号:将包升级到对应版本号
 
-##### 创建或登录自己Npm账户
+##### 创建Npm账户
 * npm adduser
 * 输入用户名
 * 输入密码
 * 输入邮箱地址
+
+##### 登录NPM账户
+* npm login
+* 输入用户名
+* 输入密码
+* 输入邮箱地址
+##### 查看当前登录用户
+* npm whoami
 
 ##### 创建自己的Npm包并发布  
 * npm init
@@ -36,3 +44,5 @@ npm unpublish 包名@版本号
 
 ##### 删除整个包
 * npm --force unpublish 包名
+
+
