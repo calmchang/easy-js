@@ -51,3 +51,44 @@ html{
   overflow:scroll
 }
 ~~~
+
+### @移动端滚动区域图片滚动时不显示问题  
+
+问题重现方法如下：
+所有样式缺一不可  
+重现链接： https://00tb7.csb.app/   
+codesandobx:  https://codesandbox.io/s/scrollimagebug-00tb7   
+重现机器：iphone 8P 13.0系统
+
+```html
+.scrollBody{
+  border-radius: 2px;
+  overflow: scroll;
+  height:200px;
+}
+.imgBody{
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+<section class="scrollBody">
+  <div class='head'>
+    <img src="default.png" />
+  </div>
+  <div class='head'>
+    <img src="default.png" />
+  </div>
+  <!-- 这里就是图片列表 -->
+</section>
+
+```
+解决方案：  
+在img标签外层的节点增加:`-webkit-transform: translateZ(0px);`    
+
+```css
+.head{
+  -webkit-transform: translateZ(0px);
+}
+```
+
