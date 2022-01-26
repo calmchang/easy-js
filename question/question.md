@@ -256,6 +256,11 @@ computed: {
 
 ## =====设计架构=====
 
+### 直接使用getter\setter和使用proxy的区别？为什么要用proxy？
+proxy的apply可以拦截方法调用  
+hash可以处理key in中隐藏某些属性  
+construct可以拦截new  
+
 ### @设计一个toast组件需要注意点什么？
 
 ### @webpack、rollup区别？
