@@ -259,7 +259,13 @@ computed: {
 ### 直接使用getter\setter和使用proxy的区别？为什么要用proxy？
 proxy的apply可以拦截方法调用  
 hash可以处理key in中隐藏某些属性  
-construct可以拦截new  
+construct可以拦截new   
+proxy和get set性能对比：  
+* set/get:1300ms  
+* proxy:735ms  
+* proxy+Reflect：1400ms  
+  
+
 
 ### @设计一个toast组件需要注意点什么？
 
