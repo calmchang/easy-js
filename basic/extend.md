@@ -146,3 +146,48 @@ child.a;  // 1
 ~~~
 
 
+
+##### es6的class   
+下面这个类中 fn、f,name、id的区别是什么？
+~~~javascript
+class Father{
+  name='father';
+  static id='1001';
+  fn(){console.log('father fn',this)};
+  f=function(){console.log('father f',this)};
+}
+var a = new Father();
+a.fn();//father fn
+a.f();//father f
+console.log(a.name);// father
+console.log(a.id);//undefined
+console.log(Father.id);//1001
+~~~
+
+尝试改变父类下fn和f的值结果怎么样？  
+~~~javascript
+
+Father.prototype.fn=function(){console.log('father fn2',this)}
+Father.prototype.f=function(){console.log('father f2',this)}
+Father.id='1002';
+a.fn();//father fn2
+a.f();//fahter f
+console.log(Father.id);//1002
+~~~
+
+总结：
+
+~~~javascript
+class Father{
+  static id='1001'
+  fn(){console.log('father fn',this)};
+}
+//相当于
+Father.prototype.fn = function(){console.log('father fn',this)}
+Father.prototype.id = '1001';
+~~~
+所以当new Father实例化对象时，对象中的fn和id其实是指向Father.prototype.fn和id的，所以在修改Father.prototype时会连带变更  
+而class内的普通变量声明`arr=xxx`则是在实例化后对象身上会单独复制一份的  
+
+
+![](http://img.vuedata.cn/classprotype.jpg)
