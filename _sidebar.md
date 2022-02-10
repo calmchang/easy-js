@@ -4,7 +4,7 @@
   * [对象的属性](/basic/objectProperty.md)
   * [操作运算](/basic/operation.md)
   * [方法对象](/basic/function.md)
-  * [继承](/basic/extend.md)
+  * [继承和类](/basic/extend.md)
   * [数组](/basic/array.md)
   * [this](/basic/this.md)
   * [宏任务和微任务](/basic/task.md)

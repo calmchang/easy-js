@@ -1,5 +1,6 @@
 
-
+# 继承和类
+> 更新日期：2021-02-10
 ##### 实现bind
 ~~~javascript
 
@@ -147,7 +148,7 @@ child.a;  // 1
 
 
 
-##### es6的class   
+### ES6的class   
 下面这个类中 fn、f,name、id的区别是什么？
 ~~~javascript
 class Father{
