@@ -45,3 +45,32 @@ setTimeout(() => {
 },0);
 ```
 
+
+### Function中的state
+
+函数式组件中useState保存的状态，在异步调用时，注意state的值问题，最好使用ref来获取最新值
+
+```javascript
+export default function App() {
+  const [cnt, setCnt] = useState(0);
+  const ref = useRef();
+  useEffect(()=>{
+    ref.current = cnt;
+  },[cnt])
+  return (
+    <>
+      <button
+        onClick={() => {
+          setCnt(cnt + 1);
+          setTimeout(() => {
+            setCnt(ref.current + 1);
+          }, 1000);
+        }}
+      >
+        add cnt
+      </button>
+      <div>cnt: {cnt}</div>
+    </>
+  );
+}
+```
