@@ -28,6 +28,7 @@
 * 浏览器
   * [常用错误码](/browser/errorCode.md)
   * [https和ssl证书](/browser/https.md)
+  * [http各版本协议区别](/browser/http.md)
 * 项目构建及规范
   * [构建打包](/build/build.md)
   * [Shell脚本常用功能](https://www.jianshu.com/p/16ad8bef9f21)

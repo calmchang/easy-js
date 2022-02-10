@@ -487,3 +487,46 @@ function coinChange (coins,amount){
 coinChange([5,4,1],8);
 
 ~~~
+
+
+##### 洗牌算法
+原理：通过将每一张牌随机同其它牌交换1次达到洗牌效果  
+执行顺序：   
+1、反向遍历数组  
+2、随机0~当前数组长度下标，取出随机的下标后，将当前位数据和随机下标位数据交换  
+
+
+~~~javascript
+function rand(min,max){
+  let seed = Math.random();
+  let ret = Math.ceil(seed * ((max + 1) - min) - 1) + min;
+  return ret;
+}
+
+function shuffle(arr){
+  let len = arr.length;
+  for(let i=len-1;i>=0;i--){
+    let randIdx = rand(0,i);
+    let temp = arr[randIdx];
+    arr[randIdx] = arr[i];
+    arr[i] = temp;
+  }
+  return arr;
+}
+~~~
+
+如何验证洗牌算法的正确性？  
+对长度为M的数组运行N次洗牌，并将每个位置上出现过的牌面进行统计，整体结果应该是平均的  
+比如有5张牌，我们运行50次洗牌操作的话，那么返回的统计结果应该每个牌面出现在每个位置上的次数都接近于N/M次，也就是10次
+
+~~~javascript
+let result=[{},{},{},{},{},{}];
+for(let z=0;z<50000;z++){
+  let out = shuffle([1,2,3,4,5]);
+  out.forEach((num,idx)=>{
+    if(!result[num][idx]){result[num][idx]=0;}
+    result[num][idx]++;
+  })
+};
+result;
+~~~
