@@ -377,3 +377,42 @@ babel/plugin-transform-runtime解决了@babel/polyfill的变量污染问题，�
         },
       },
 ```
+
+
+
+#### webpack3中公共模块的提取
+在webpack4中我们使用`splitChunks`来提取公共模块，而在webpack3中我们使用`new webpack.optimize.CommonsChunkPlugin`来提取  
+编写方法上我们需要在entry内将需要提取的模块单独编写出来
+```javascript
+//webpack.config.js
+module.exports ={
+  entry:{
+    index:'..../index.js',
+    myBundle:['react','react-dom'],//这里我们将公共模块放入myBundle包中
+  },
+  //...
+  plugins:[
+    // 这里通过 CommonsChunkPlugin 插件将myBundle模块单独提取成[name].js文件
+    // 这样如果你使用HtmlWebpackPlugin插件时则会自动注入进html内引用
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['myBundle'],
+      filename: '[name].js'
+    })
+  ]
+}
+```
+#### 思考: webpack3的 CommonsChunkPlugin、webpack4中splitChunks同webpack.DllPlugin提取的模块有什么区别？
+
+1、webpack.DllPlugin插件提取的文件可以作为静态资源引用，并且可以实现需要编译时手动编译一次  
+2、CommonsChunkPlugin、splitChunks配置的公共模块在调试过程中随你的代码变动而动态重新编译提取所以性能上不如webpack.DllPlugin  
+
+所以根据场景不同选择不同方案即可  
+
+#### 问题：为什么webpack.DllPlugin提取出来的react模块包含了 react.development.js和react.production.js ?
+那是因为在引用react模块时，react的index.js内会根据`process.env.NODE_ENV`环境变量引用不同版本的js,而我们打包时由于`process.env.NODE_ENV`不确定导致将2个环境下的js都引用进去了  
+解决方法是在webpack内通过DefinePlugin在代码中注入NODE_ENV环境变量，以便require时能正确判断环境引用对应版本  
+```
+ new webpack.DefinePlugin({
+  'process.env.NODE_ENV': devMode?'"dev"':'"production"'
+}),
+```

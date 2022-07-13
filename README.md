@@ -322,10 +322,10 @@ fi
 2. 列表第2行
 
 #### 表格
-姓名|技能|排行
+字段|类型|描述
 --|:--:|--:
-刘备|哭|大哥
-关羽|打|二哥
+time|string|阻塞时间(毫秒数)
+关羽 <span style="margin-left:100px;border-radius:4px;background:#ccc;padding:4px;">可选</span>|打|二哥<br/>二嫂<br/><span style="margin-left:100px;border-radius:4px;background:red;padding:4px;">默认值:ff</span>
 张飞|骂|三弟
 
 #### 超链接

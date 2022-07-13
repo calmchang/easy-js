@@ -1,4 +1,31 @@
 
+## font-weight 字体粗细
+font-weight各个值对应的重量名称：  
+100 - Thin  
+200 - Extra Light (Ultra Light)  
+300 - Light  
+400 - Normal  
+500 - Medium  
+600 - Semi Bold (Demi Bold)  
+700 - Bold  
+800 - Extra Bold (Ultra Bold)  
+900 - Black (Heavy)  
+normal - 同400相同  
+bold - 同700相同  
+bolder - 大于父节点的字重值  
+lighter - 小于父节点的字重值
+
+
+对于`font-family: -apple-system`苹方字体而言，各个字重对应`font-weight`关系如下： 
+
+常规体: 400  
+极细体: 100  
+纤细体: 200  
+细体: 300  
+中黑体: 500  
+中粗体: 700  
+
+其中500和700在web端表现是一致的，所以可以合并为一个使用
 
 ## font-spider 字体生成器
 

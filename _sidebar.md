@@ -22,6 +22,7 @@
   * [元素](/dom/element.md)
   * [大小位置](/dom/size.md)
   * [flex](/dom/flex.md)
+  * [innerText、textContent、nodeValue、data、innerHTML区别](/dom/text.md)
 * CSS
   * [选择器](/css/selector.md)
   * [常用样式](/css/demo.md)

@@ -35,6 +35,9 @@ x.fn1();
 var temp = x.fn1;
 temp();
 x.fn1.call({name:'cc'});
+//x
+//window
+//cc
 
 // ==============================================
 var x={
@@ -47,6 +50,9 @@ x.fn2();
 var temp = x.fn2;
 temp();
 x.fn2.call({name:'cc'});
+//window
+//window
+//window
 
 // ==============================================
 
@@ -61,6 +67,9 @@ x.fn3();
 var temp = x.fn3;
 temp();
 x.fn3.call({name:'cc'});
+//x
+//window
+//cc
 
 // ==============================================
 var x={
@@ -71,7 +80,8 @@ var x={
 }
 x.fn4()();
 x.fn4.call({name:'cc'})();
-
+//x
+//cc
 
 ```
 
@@ -161,6 +171,22 @@ xhr.send();
 
 ### @并发调用setState后的值  
 ```javascript
+export default function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        add
+      </button>
+      <div>count: {count}</div>
+    </>
+  );
+}
+
 class Test extends React.Component {
   constructor(props) {
     super(props);
