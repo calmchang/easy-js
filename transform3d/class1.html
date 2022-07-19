@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>translateZ</title>
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+    
+    .objectImage{
+      pointer-events: none;
+    }
+    .objectImage[step='2']{
+      transform: translateZ(-40px);
+    }
+    .objectImage[step='3']{
+      transform: translateZ(40px);
+    }
+    </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="axis/index.css">
+    <link rel="stylesheet" href="theatre/index.css">
+
+</head>
+
+<body>
+  <section id="theatre" class="theatre" id="theatre">
+    <section class="stage" id="stage">
+
+      <div class="objectImage" step="1">
+        <img src="./assets/eye.png">
+
+      </div>
+
+    </section>
+  </section>
+  <script>   
+    window.onload=function(){
+      var stage = document.querySelector('#stage');
+      initLog(stage);
+      initTitle(stage);
+      initTehatre();
+      initAxis(stage);
+      
+
+      if(location.search.indexOf('step=2')>=0){
+        document.querySelector('.objectImage').setAttribute('step','2');
+      }
+      if(location.search.indexOf('step=3')>=0){
+        document.querySelector('.objectImage').setAttribute('step','3');
+      }
+
+      return;
+    }
+  </script>
+  <script src="index.js"></script>
+
+  <script src="log/index.js"></script>
+  <script src="axis/index.js"></script>
+  <script src="hammer.js"></script>
+  <script src="theatre/index.js"></script>
+
+</body>
+
+</html>

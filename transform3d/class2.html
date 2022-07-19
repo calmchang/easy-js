@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>翻滚吧</title>
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+   
+    </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="axis/index.css">
+    <link rel="stylesheet" href="theatre/index.css">
+    <link rel="stylesheet" href="cube/index.css">
+</head>
+
+<body>
+  <section id="theatre" class="theatre" id="theatre">
+    <section class="stage" id="stage">
+      
+      <div class="cube" id="cube">
+        <div class="cube-face" idx="front">front</div>
+        <div class="cube-face" idx="back">back</div>
+        <div class="cube-face" idx="left">left</div>
+        <div class="cube-face" idx="right">right</div>
+        <div class="cube-face" idx="up">up</div>
+        <div class="cube-face" idx="down">down</div>
+      </div>
+    </section>
+  </section>
+
+  <script>   
+    var timer=null;
+    var step=0;
+    function runStep(){
+      let cube = document.querySelector('#cube');
+      let title = document.querySelector('#title');
+      let config=['rotateX','rotateY','rotateZ'];
+      let axis=['x','y','z'];
+      cube.setAttribute('step',step%3+1);
+      title.innerText=config[step%3];
+      axisActive(axis[step%3]);
+      step++;
+      setTimeout(runStep,2000);
+    }
+    window.onload=function(){
+      var stage = document.querySelector('#stage');
+      initLog(stage);
+      initTitle(stage);
+      initAxis(stage);
+      initTehatre({lockRange:true,vx:80,vy:0});
+      runStep();
+      return;
+    }
+  </script>
+  <script src="index.js"></script>
+  <script src="log/index.js"></script>
+  <script src="axis/index.js"></script>
+  <script src="hammer.js"></script>
+  <script src="theatre/index.js"></script>
+
+</body>
+
+</html>

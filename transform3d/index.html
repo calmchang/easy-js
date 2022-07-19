@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="axis/index.css">
+    <link rel="stylesheet" href="theatre/index.css">
+    <link rel="stylesheet" href="cube/index.css">
+
+
+</head>
+
+<body>
+  <section id="theatre" class="theatre" id="theatre">
+    <section class="stage" id="stage">
+      <div class="cube">
+        <div class="cube-face" idx="front">front</div>
+        <div class="cube-face" idx="back">back</div>
+        <div class="cube-face" idx="left">left</div>
+        <div class="cube-face" idx="right">right</div>
+        <div class="cube-face" idx="up">up</div>
+        <div class="cube-face" idx="down">down</div>
+      </div>
+
+
+      <div class="objectImage">
+        <img src="./assets/eye.png">
+      </div>
+
+      <div class="wall">
+        <div class="wall-left"></div>
+        <div class="wall-center"></div>
+        <div class="wall-right"></div>
+      </div>
+    </section>
+    <!-- <img src="./assets/eye.png" class="eye" /> -->
+  </section>
+
+  <section class="operWrap">
+
+    <hgroup class="operGroup">
+      <!-- <input type="" -->
+    </hgroup>
+
+    <hgroup class="operGroup">
+      <button id="zBig">z-big</button>
+      <button id="zSmall">z-small</button>
+      <label id="z">z:0</label>
+    </hgroup>
+
+    <hgroup class="operGroup">
+      <button id="pBig">p-big</button>
+      <button id="pSmall">p-small</button>
+      <label id="p">p:800</label>
+    </hgroup>
+
+    <hgroup class="operGroup">
+      <button id="oUp">up</button>
+      <button id="oDown">down</button>
+      <button id="oLeft">left</button>
+      <button id="oRight">right</button>
+      <label id="o">o:50% 50%</label>
+    </hgroup>
+
+
+    <hgroup class="operGroup">
+      <button id="boxVisible">boxVisible</button>
+    </hgroup>
+
+    <hgroup class="operGroup">
+      <button id="run">animation run</button>
+    </hgroup>
+
+    <hgroup class="operGroup">
+      <button id="changeAnimate">translateX</button>
+      <button id="changeAnimate">translateY</button>
+      <button id="changeAnimate">translateZ</button>
+      <button id="changeAnimate">scaleX</button>
+      <button id="changeAnimate">scaleY</button>
+      <button id="changeAnimate">scaleZ</button>
+      <button id="changeAnimate">rotateX</button>
+      <button id="changeAnimate">rotateY</button>
+      <button id="changeAnimate">rotateZ</button>
+
+    </hgroup>
+
+  </section>
+  <script>
+  
+    window.onload=function(){
+
+      var stage = document.querySelector('#stage');
+      initLog(stage);
+      initTitle(stage);
+      initAxis(stage);
+      initTehatre();
+      return;
+
+      document.querySelector('#zBig').addEventListener('click',function(){
+        z+=1;
+        update();
+      })
+      document.querySelector('#zSmall').addEventListener('click',function(){
+        z-=1;
+        update();
+      })
+      document.querySelector('#pBig').addEventListener('click',function(){
+        p+=100;
+        update();
+      })
+      document.querySelector('#pSmall').addEventListener('click',function(){
+        p-=100;
+        update();
+      })
+
+      document.querySelector('#oUp').addEventListener('click',function(){
+        oY-=10;
+        update();
+      })
+      document.querySelector('#oDown').addEventListener('click',function(){
+        oY+=10;
+        update();
+      })
+      document.querySelector('#oLeft').addEventListener('click',function(){
+        oX-=10;
+        update();
+      })
+      document.querySelector('#oRight').addEventListener('click',function(){
+        oX+=10;
+        update();
+      })
+
+      document.querySelector('#boxVisible').addEventListener('click',function(){
+        boxVisible=!boxVisible;
+        update();
+      })
+      document.querySelector('#run').addEventListener('click',function(){
+        animationRun=!animationRun;
+        update();
+      })
+
+      document.querySelector('#changeAnimate').addEventListener('click',function(){
+        let list=['aniDefaultY','aniDefaultX','aniDefaultZ','aniDefaultScaleX','aniDefaultScaleY','aniDefaultScaleZ'];
+        changeAnimate=list[changeAnimateIdx%list.length];
+        changeAnimateIdx++;
+        update();
+      })
+
+      
+      let z = 0;
+    let p=800;
+    let o='50% 50%';
+    let oY=50;
+    let oX=50;
+    let boxVisible = true;
+    let animationRun=false;
+    let changeAnimate ='aniDefaultY';
+    let changeAnimateIdx=0;
+    const dq = document.querySelector;
+
+    function update(){
+      
+      document.querySelector('#p').innerText=p;
+      document.querySelector('#screen').style.perspective=p+'px';
+      
+      document.querySelector('#z').innerText=z;
+      var img = document.querySelector('#img1');
+      if(img)img.style.transform=`translateZ(${z}px)`;
+
+      document.querySelector('#o').innerText=`${oX}% ${oY}%`;
+      document.querySelector('.view').style.perspectiveOrigin=`${oX}% ${oY}%`;
+
+
+      document.querySelector('#run').innerText=animationRun?'animate stop':'animate run'
+      document.querySelector('#scene').style.animation=animationRun?`${changeAnimate} 10s linear 0s infinite normal both`:'';
+      
+      
+
+      document.querySelectorAll('.box').forEach(box=>{
+        box.style.display=boxVisible?'block':'none';
+      })
+      
+    }
+    
+    
+    
+      
+      
+      
+
+    }
+  </script>
+  <script src="index.js"></script>
+  <script src="log/index.js"></script>
+  <script src="axis/index.js"></script>
+  <script src="hammer.js"></script>
+  <script src="theatre/index.js"></script>
+
+</body>
+
+</html>

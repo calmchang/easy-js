@@ -1,0 +1,30 @@
+
+
+.theatre{
+  /* 剧场的大小 */
+  width:750px;
+  height:375px;
+  background:#ccc;
+  /* 透视距离 */
+  perspective:800px;
+  /* 中心点位置 */
+  perspective-origin:50% 50%;
+  display:flex;
+  justify-content:center;
+  overflow:hidden;
+}
+.stage{
+  width:100%;
+  height:100%;
+  /* 将scene设置为3D场景的容器，此时它有了深度 */
+  transform-style: preserve-3d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+}
+.title{
+  position: absolute;
+  right:20px;
+  top:20px;
+}
