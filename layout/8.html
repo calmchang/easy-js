@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="drag.css">
+    <script src="drag.js"></script>
+    <script src="guide.js"></script>
+    <script src="boxlist.js"></script>
+    <script src="domsize.js"></script>
+
+
+    <style>
+
+    .center{
+      display: grid;
+      grid-template-rows: minmax(30px,50px) minmax(200px,1fr) minmax(30px,50px);
+    }
+    .background{
+      display: grid;
+      grid-template-columns: minmax(60px,150px) minmax(350px,1fr)  minmax(60px,150px) ;
+      grid-gap:6px;
+    }
+    article{
+      overflow: auto;
+    }
+    .box{
+      width:100%;
+      height:60px;
+      margin-bottom: 12px;
+    }
+    </style>
+</head>
+
+<body>
+  <h1>常规PC端后管布局-圣杯布局</h1>
+  <section id="body" class="center">
+    <header>
+      header
+    </header>
+    <section class="background">
+      <nav>
+        nav
+      </nav>
+      <article>
+      </article>
+      <nav>
+        right nav
+      </nav>
+    </section>
+    <footer>
+      footer
+    </footer>
+
+  </section>
+
+
+
+</body>
+
+</html>

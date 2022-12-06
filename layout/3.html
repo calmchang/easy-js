@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="drag.css">
+    <script src="drag.js"></script>
+    <script src="guide.js"></script>
+    <script src="boxlist.js"></script>
+    <script src="domsize.js"></script>
+
+    <style>
+    .center{
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      display: grid;
+      grid-gap: 12px;
+    }
+    .height{height:100px;}
+    </style>
+</head>
+
+<body>
+  <h1>grid自动填充</h1>
+  <center>横向充满行单元格+宽度自适应+自动换行</center>
+  <center>单元格宽度为150px~100%范围</center>
+  <center>高度自适应填充，填充满单元格高度</center>
+  <tips>如果想和上一篇flex布局一样的效果，高度固定的话，就要显示单元格height为100px</tips>
+  <hgroup class="optionWrap">
+    <input id='checkHeight' type="checkbox">单元格固定为100px高度</input>
+  </hgroup>
+
+  <div id="body" class='center'>
+    <div class="box">1</div>
+  </div>
+  <script>
+    window.addEventListener('load',()=>{
+      document.querySelector('#checkHeight').addEventListener('change',(e)=>{
+        let checked = e.target.checked;
+        if(!checked){
+          let doms = document.querySelectorAll('.height');
+          for(let dom of doms){
+            dom.classList.remove('height');
+          }
+        }else{
+          let doms = document.querySelectorAll('.box');
+          for(let dom of doms){
+            dom.classList.add('height');
+          }
+        }
+        window.domsize();
+      })
+    })
+  </script>
+</body>
+
+</html>

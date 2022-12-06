@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="drag.css">
+    <script src="drag.js"></script>
+    <script src="guide.js"></script>
+    <script src="boxlist.js"></script>
+    <script src="domsize.js"></script>
+    
+
+    <style>
+    
+    .center{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .box{
+      flex-grow:1;
+      flex-shrink:1;
+      width:150px;
+      height:100px;
+      margin:5px;
+    }
+    .noGrow{
+      flex-grow: 0 !important;
+    }
+    .noShrink{
+      flex-shrink: 0 !important;
+    }
+    </style>
+</head>
+
+<body>
+  <h1>flex自动填充</h1>
+  <center>flex横向填充+自动换行</center>
+  <center>单元格高度固定</center>
+  <center>flex-grow勾选时，单元格宽度可以超过150px</center>
+  <center>flex-shrink勾选时，单元格宽度可以小于150px</center>
+
+  <hgroup class="optionWrap">
+    <input id='checkGrow' type="checkbox" checked>flex-grow</input>
+    <input id='checkShrink' type="checkbox" checked>flex-shrink</input>
+  </hgroup>
+  <div id="body" class='center'>
+    <div class="box">1</div>
+  </div>
+
+  <script>
+    window.addEventListener('load',()=>{
+      document.querySelector('#checkGrow').addEventListener('change',(e)=>{
+        let checked = e.target.checked;
+        if(checked){
+          let doms = document.querySelectorAll('.noGrow');
+          for(let dom of doms){
+            dom.classList.remove('noGrow');
+          }
+        }else{
+          let doms = document.querySelectorAll('.box');
+          for(let dom of doms){
+            dom.classList.add('noGrow');
+          }
+        }
+        window.domsize();
+      })
+      document.querySelector('#checkShrink').addEventListener('change',(e)=>{
+        let checked = e.target.checked;
+        if(checked){
+          let doms = document.querySelectorAll('.noShrink');
+          for(let dom of doms){
+            dom.classList.remove('noShrink');
+          }
+        }else{
+          let doms = document.querySelectorAll('.box');
+          for(let dom of doms){
+            dom.classList.add('noShrink');
+          }
+        }
+        window.domsize();
+      })
+    })
+  </script>
+
+</body>
+
+</html>

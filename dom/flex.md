@@ -1,5 +1,11 @@
 
 
+##### flex
+flex: x y z;
+x=flex-grow
+y=flex-shrink
+z=flex-basis
+
 ##### flex-shrink
 用于控制当前DOM在需要被压缩空间时，按照什么比例来压缩，`默认为1`
 

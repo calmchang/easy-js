@@ -1,0 +1,19 @@
+.drag{
+  position: absolute;
+  width:40px;
+  height:40px;
+  border-radius: 8px;
+  background-color: #c95216;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  color:white;
+  font-size: 12px;
+  cursor: pointer;
+  right:-20px;
+  bottom:-20px;
+}
+.drag:hover{
+  background-color: #e98d60;
+  box-shadow: 0 0 12px 2px #ccc;
+}
