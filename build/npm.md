@@ -67,8 +67,12 @@ npm unpublish 包名@版本号
 
 ### 本地调试未发布的包
 
-1. 首先终端下定位在你当前的工程目录下  
-2. 执行 `npm link /未发布的Npm包的目录`   
-3. require('未发布的npm包') 就可以使用了    
+1. 假设我们有一个开发中的npm包，叫`my-cli`，源代码在`/User/my-cli/`目录下
+2. 我们有一个正在开发中的项目叫`my-app`，项目目录在`/User/my-app/`目录下
+3. 现在我们定位到开发中的项目`cd /User/my-app`下
+4. 执行 `npm link /User/my-cli` 将npm包链接到npm上   
+5. 在项目中直接使用 `require('my-cli')` 就可以使用啦
+6. 当不需要使用想卸载的时候， `npm ls --global my-cli` 检查是否被npm link，如果有link目录则可以继续下面步骤 
+7. 执行 `npm rm --global my-cli` 进行卸载
 
 
