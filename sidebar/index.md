@@ -76,6 +76,7 @@
 * vscode
   * [快捷键](/vscode/README.md)
 * react
+  * [异步加载和分包](/react/asyncImport.md)
   * [生命周期](/react/life.md)
   * [react-route](/react/reactRoute.md)
   * [渲染](/react/render.md)
