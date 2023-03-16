@@ -1,4 +1,33 @@
 
+##### @监听DOM变化
+
+监听DOM的尺寸变化
+
+```js
+  const sizeListener=new ResizeObserver((items)=>{
+    if(!items||items.length<=0)return;
+    // items[0].target
+    //尺寸变化
+  })
+  sizeListener.observe(dom);//开始监听
+  //sizeListener.unobserve(dom);//释放监听
+```
+
+监听DOM内部的属性或子元素发生变化  
+
+```js
+    const mutationCallback = (mutations) => {
+      for(let mutation of mutations){
+        console.log(mutation.type);//哪个属性发生了变化
+      }
+    };
+    let listener = new MutationObserver(mutationCallback);
+    listener.observe(dom, {childList: true,attributes:true,subtree:true});
+    //  listener.disconnect()//释放监听
+
+```
+
+
 ##### @元素尺寸  
   * 获取一个标签的真实宽度高度(比如<p>标签文字真实长度) dom.scrollWidth ,而获取一个标签的可视宽高度为 dom.clientWidth;
   * 获取屏幕的可视高度 window.screen.height*window.devicePixelRatio  
