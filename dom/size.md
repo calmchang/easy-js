@@ -95,6 +95,45 @@ div{
 dom.scrollIntoView()
 ```
 
+##### @监听元素进入可视范围
+```javascript
+let dom=document.querySelector('#id');
+let observe = new IntersectionObserver((entries) => {
+  if (entries[0].intersectionRatio <= 0) {
+    // 移出可视范围内
+    return;
+  }
+  //进入可视范围内
+});
+observe.observe(dom);
+// 资源销毁
+// observe.disconnect();|| observe.unobserve(dom)
+```
+
+##### @sticky-元素粘性定位
+如下情况，stickyDom在DOM流中所处位置如果top>20px，则按实际位置渲染，当我们下滑滚动条时，如果top<20px则会将其固定在top=20px的位置上  
+
+```html
+<style>
+.stickyDom{
+  position: sticky;
+  top:20px;
+}
+.block{
+  width:100%;
+  height:300px;
+}
+</style>
+<body>
+<section>
+  <div class='block'>模块1</div>
+  <div class='block stickyDom'>粘性模块</div>
+</section>
+</body>
+``` 
+
+
+
 ##### @获取元素宽高  
  
 * offsetWidth和clientWidth区别?
