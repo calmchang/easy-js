@@ -1,4 +1,26 @@
 
+##### 页面加载完毕  
+
+以下是一个完整DOM加载完毕后的事件执行过程  
+如果只是使用window.onload或window.addEventListener('load')，需要确保在DOM加载完毕前声明，不然可能会出现异常  
+
+```javascript
+var init=false;
+function onLoaded(){
+  if(init)return;
+  init=true;
+}
+if(document.readyState=='interactive'||document.readyState=='complete'){
+    onLoaded();
+}else{
+  window.addEventListener('DOMContentLoaded',function(){
+    onLoaded();
+  })
+  window.addEventListener('load',function(){
+    onLoaded();
+  })
+}
+```
 
 ##### stopImmediatePropagation 和 stopPropagation 区别
 1、stopPropagation 会阻止当前事件继续传播给其他节点，而如果当前节点同一事件有多个监听的话，则都会执行
