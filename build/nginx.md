@@ -69,7 +69,7 @@ if (!-f /usr/share/nginx/www-test/upgrade.html) {
 为了避免index.html被浏览器缓存，在nginx中增加如下配置  
 
 ```nginx
-location ~*.(html)${
+location ~*.(html)$ {
     expires 0;
     add_header Cache-Control "max-age=0";
     add_header Cache-Control "private";

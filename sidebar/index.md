@@ -46,7 +46,10 @@
   * [https和ssl证书](/browser/https.md)
   * [http各版本协议区别](/browser/http.md)
   * [浏览器加载web流程 - 如何优化首屏时间](https://www.jianshu.com/p/744d8e53dcf9)  
-  * [如何防止网站被调试](/browser/debug.md)
+  * [如何防止网站被调试](/browser/debug.md)  
+  * [页面资源缓存策略](https://www.jianshu.com/p/5610fbfcf4be)  
+
+  
 
 * 项目构建及规范
   * [构建打包](/build/build.md)
