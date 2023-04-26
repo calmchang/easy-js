@@ -1,4 +1,19 @@
 
+##### 伪随机
+
+以下是一个稳定的伪随机生成器,将随机获取`>=min&&<=max`之间的数  
+GLOBAL_SEED为初始种子  
+
+```js
+let GLOBAL_SEED=1;
+function rand(min,max){
+  GLOBAL_SEED = (GLOBAL_SEED*9301+49297)%233280;
+  let seed= GLOBAL_SEED/233280;
+  var ret = Math.floor(seed * (max-min+1) + min);
+  return ret;
+}
+```
+
 ##### 二进制右移操作符 >>和>>>
 * `>>` 带符号右移，会保持原来正负数符号
   ~~~javascript

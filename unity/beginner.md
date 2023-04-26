@@ -1,5 +1,15 @@
 [TOC]
 
+### 环境搭建
+1. unity官网可以下载unity工具
+2. 安装vscode
+3. 根据unity官网文档内的vscode环境搭建步骤进行搭建
+4. vscode需要安装的插件
+  * C# 
+  * unity code snippets
+5. vscode用户配置  
+  `"omnisharp.useModernNet": false,`
+
 ### 碰撞(Collider)
 * 让物体和世界产生碰撞有几个必要条件：
 	* 1.必须给对象添加钢体(RigidBody)，可在`Component -> Physics`菜单内添加。
