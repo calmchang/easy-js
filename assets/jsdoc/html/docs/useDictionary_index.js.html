@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>useDictionary/index.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-useClipboard.html">useClipboard</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useClipboard.html#~useClipboard">useClipboard</a></li></ul></li><li><a href="module-useCounter.html">useCounter</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useCounter.html#~useCounter">useCounter</a></li></ul></li><li><a href="module-useDictionary.html">useDictionary</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useDictionary.html#~SET">SET</a></li><li data-type='method' style='display: none;'><a href="module-useDictionary.html#~useDictionary">useDictionary</a></li></ul></li><li><a href="module-usePagination.html">usePagination</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-usePagination.html#~usePagination">usePagination</a></li></ul></li><li><a href="module-usePaginationWithForm.html">usePaginationWithForm</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-usePaginationWithForm.html#~usePaginationWithForm">usePaginationWithForm</a></li></ul></li><li><a href="module-useSwitch.html">useSwitch</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useSwitch.html#~useSwitch">useSwitch</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">useDictionary/index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module useDictionary
+ */
+import React,{ useState, useMemo, useEffect } from 'react';
+
+const DEFAULT_CONFIG={
+  SelectOption:null,
+  RadioOption:null
+};
+
+/**
+ * 字典管理
+ * 
+ * [Demo - CodeSandBox]{@link https://codesandbox.io/s/usedictionary-j7cw8?file=/index.js}
+ * 
+ * @param {Object} props
+ * @param {Api} props.api - 用于获取字典列表的接口
+ * @param {string} [props.idKey='id'] - 字段id的key键值
+ * @param {string} [props.nameKey='name'] - 字段name的key键值
+ * @param {string} [props.labelKey='label'] - 字段label的key键值
+ * @param {ReactDom} [props.SelectOption] - 指定\&lt;Select.Option\>对象是谁
+ * @param {ReactDom} [props.RadioOption] - 指定\&lt;Radio.Button\>对象是谁
+ * @param {callback} [props.beforeApi] - (request:object)=>object 接口调用前的参数拦截器
+ * @param {callback} [props.afterApi] -  (reponse:object)=>object[] 接口调用后的拦截器
+ * 
+ * 
+ * @return {UseDictionaryResult}
+ * 
+ * @example
+import {Select,Radio} from 'antd';
+import useDictionary from '@/useDictionary';
+useDictionary.SET({SelectOption:Select.Option,RadioOption:Radio.Button});
+
+const Index=()=>{
+
+  const emCity = useDictionary({
+    api:()=>{
+        return new Promise(resolve=>{
+          resolve({
+            code:0,
+            data:{
+              body:[
+                {id:1,name:'shanghai',label:'上海'},
+                {id:2,name:'beijing',label:'北京'},
+                {id:3,name:'guangzhou',label:'广州'}
+              ]
+            }
+          })
+        })
+      }
+  });
+
+  return (
+    &lt;section >
+      &lt;Select defaultValue={1}>
+        {
+          emCity.selectOptions
+        }
+      &lt;/Select>
+      &lt;p>分割线&lt;/p>
+      &lt;Radio.Group defaultValue={1}>
+        {
+          emCity.radioOptions
+        }
+      &lt;/Radio.Group>
+    &lt;/section>
+  )
+}
+ */
+const useDictionary=(props)=>{
+
+  const { 
+    api, 
+    idKey = 'id', 
+    nameKey = 'name', 
+    labelKey = 'label',
+    beforeApi,
+    afterApi,
+    SelectOption= DEFAULT_CONFIG.SelectOption,
+    RadioOption= DEFAULT_CONFIG.RadioOption } = props;
+
+  const [types, setTypes] = useState(null);
+
+  const init = async () => {
+    let params={};
+    if(beforeApi){
+      params = beforeApi();
+    }
+    const ret = await api(params);
+    if(afterApi){
+      ret = afterApi(ret);
+      setTypes(ret||[]);
+    }else{
+      if (+ret?.code === 0) {
+        setTypes(ret.data.body || []);
+      }
+    }
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
+  const getLabel = (id) => {
+    if (types) {
+      for (let i = 0; i &lt; types.length; i++) {
+        if ('' + types[i][idKey] === '' + id) {
+          return types[i][labelKey];
+        }
+      }
+    }
+    return '';
+  };
+  const getName = (id) => {
+    if (types) {
+      for (let i = 0; i &lt; types.length; i++) {
+        if ('' + types[i][idKey] === '' + id) {
+          return types[i][nameKey];
+        }
+      }
+    }
+    return '';
+  };
+  const getId = (labelOrName) => {
+    if (types) {
+      for (let i = 0; i &lt; types.length; i++) {
+        const label = '' + types[i][labelKey];
+        const name = '' + types[i][nameKey];
+        const txt = '' + labelOrName;
+        if (label === txt || name === txt) {
+          return types[i][idKey];
+        }
+      }
+    }
+    return '';
+  };
+
+  const selectOptions = useMemo(() => {
+    if(!SelectOption)return &lt;>SelectOption未指定&lt;/>;
+    return (
+      types?.map((item) => {
+        return (
+          &lt;SelectOption key={item[idKey]} value={item[idKey]} data-keyname={item[nameKey]}>
+            {item[labelKey]}
+          &lt;/SelectOption>
+        );
+      }) || ''
+    );
+  }, [types,SelectOption]);
+
+  const radioOptions = useMemo(() => {
+    if(!RadioOption)return &lt;>RadioOption没指定&lt;/>;
+    return (
+      types?.map((item) => {
+        return (
+          &lt;RadioOption key={item[idKey]} value={item[idKey]} data-keyname={item[nameKey]}>
+            {item[labelKey]}
+          &lt;/RadioOption>
+        );
+      }) || ''
+    );
+  }, [types,RadioOption]);
+
+  const isReady = () => {
+    return types !== null;
+  };
+  const reload = () => {
+    init();
+  };
+
+  const actions = useMemo(() => {
+    return { types, getLabel, getId, getName, selectOptions, isReady, reload, radioOptions };
+  }, [types]);
+
+  return actions;
+
+}
+
+export const SetConfig = ({SelectOption,RadioOption})=>{
+  if(SelectOption)DEFAULT_CONFIG.SelectOption = SelectOption;
+  if(RadioOption)DEFAULT_CONFIG.RadioOption = RadioOption;
+};
+
+
+
+/**
+ * @typedef Api
+ * @property {Object} params - 调用接口用到的参数
+ * @returns {Object}
+ */
+
+
+
+/**
+ * @typedef DictionaryItem
+ * 字典数据的结构
+ * @property {string} id  - 数据唯一ID
+ * @property {string} name  - 数据唯一id对应的别名
+ * @property {string} label  - 展示给用户看的文字
+ * 
+ */
+
+/**
+ * @typedef UseDictionaryResult
+ * @property {DictionaryItem[]}  types - 字典数据列表
+ * @property {ReactDOM[]} selectOptions - 供Antd渲染\&lt;Select\>的列表
+ * @property {ReactDOM[]} radioOptions - 供Antd渲染\&lt;Radio\>的列表
+ * @property {function}  getId - (labelOrName:string)=>string,搜索字典项中,label或name匹配labelOrName的项目，返回其id的值
+ * @property {function}  getName - (id:string)=>string,搜索字典项中,id匹配id的项目，返回其name的值
+ * @property {function}  getLabel - (id:string)=>string,搜索字典项中,id匹配id的项目，返回其label的值
+ * @property {function}  reload - ()=>void,重新调用字典接口刷新字典列表
+ * 
+ */
+
+/**
+ * @function SET
+ * @description 全局设置SelectOption和RadioOption  
+ * 
+ * @param {Object} params
+ * @param {ReactDom} params.SelectOption - Antd的SelectOption组件
+ * @param {ReactDom} params.RadioOption - Antd的SelectOption组件
+ * @returns {void}
+ */
+
+
+export default useDictionary
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 27 2023 16:42:13 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

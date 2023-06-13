@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>usePagination/index.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-useClipboard.html">useClipboard</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useClipboard.html#~useClipboard">useClipboard</a></li></ul></li><li><a href="module-useCounter.html">useCounter</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useCounter.html#~useCounter">useCounter</a></li></ul></li><li><a href="module-useDictionary.html">useDictionary</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useDictionary.html#~SET">SET</a></li><li data-type='method' style='display: none;'><a href="module-useDictionary.html#~useDictionary">useDictionary</a></li></ul></li><li><a href="module-usePagination.html">usePagination</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-usePagination.html#~usePagination">usePagination</a></li></ul></li><li><a href="module-usePaginationWithForm.html">usePaginationWithForm</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-usePaginationWithForm.html#~usePaginationWithForm">usePaginationWithForm</a></li></ul></li><li><a href="module-useSwitch.html">useSwitch</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useSwitch.html#~useSwitch">useSwitch</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">usePagination/index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/** 
+ * @module usePagination
+*/
+import { useState,useMemo,useRef } from 'react';
+
+/**
+ * 分页管理器
+ * @param {Object} props 
+ * @param {function} props.service - 发送请求的方法,默认分页使用current和pageSize，如有特殊需求通过beforeService拦截处理
+ * @param {Pagination} [props.pagination] - 默认分页信息
+ * @version 1.0.0
+ * 
+ * @example 
+  // 移动端滚动加载案例
+  const page = usePagination({
+    service:GET_LIST,
+    pagination:{pageSize:10},
+    
+  });
+
+  useEffect(()=>{
+    const fnFeforeService = (params)=>{
+      // 假如你这里需要变更接口字段名称的话
+      params.page=params.current;
+      params.keyword='abc';
+      return params;
+    }
+    
+    const fnAfterService = (response)=>{
+      // 这里你可以翻译及二次处理你的接口字段
+      let req={
+        code:response.errorCode
+        data:response.list,
+        page:response.pageInfo
+      };
+      response.code=response;
+      return response;
+    },
+
+    page.addListener('beforeService',fnFeforeService);
+    page.addListener('afterService',fnAfterService);
+    return ()=>{
+      page.removeListener('beforeService',fnFeforeService);
+      page.removeListener('afterService',fnAfterService)
+    }
+  },[])
+
+  const onReset=()=>{page.reset();}
+
+  const onPageChange=()=>{
+    let value=document.querySelector('#inputPage').value;
+    page.update({pagination:{current:+value}})
+  }
+  const onNext=()=>{page.nextPage();}
+
+  const renderTable=()=>{
+    let renderData= [];
+    page?.data?.forEach(list=>{
+      renderData=[...renderData,...list];
+    })
+    
+    return (
+      &lt;ul>
+      {
+        renderData?.map((item,idx)=>{
+          return &lt;li key={idx}>[{idx}]{item}&lt;/li>
+        })
+      }
+      &lt;/ul>
+    )
+    
+  }
+  return (
+    &lt;ul>
+    {renderTable()}
+    &lt;/ul>
+  )
+ * 
+ * @returns {UsePaginationResult} 
+ */
+const usePagination=(props)=>{
+
+  const {service}= props;
+
+  const DEFAULT_PAGE_SIZE=20;
+  const DEFAULT_PAGE_CURRENT=1; 
+  const [pagination,setPagination] = useState({
+    current: DEFAULT_PAGE_CURRENT,
+    pageSize: props?.pagination?.pageSize??DEFAULT_PAGE_SIZE
+  });
+  const [data,setData] = useState(null);
+  const refListener= useRef({
+    beforeService:[],
+    afterService:[]
+  });
+
+  const update= async ({pagination:_pagination,clear=false}={})=>{
+    _pagination = _pagination ?? pagination;
+    _pagination = {...pagination,..._pagination};
+
+    const {current,pageSize} = _pagination;
+
+    let params = {current,pageSize};
+    let listener=refListener.current;
+    const {beforeService} = listener;
+    if(beforeService){
+      console.log('[usePagination] beforeService',params)
+      for(let i=0;i&lt;beforeService.length;i++){
+        params = beforeService[i](params);
+        if(typeof params?.then == 'function'){
+          params = await params;
+        }
+        if(!params){return;}
+      }
+    }
+    if(!params)requrn;
+    console.log('[usePagination] service',params)
+    let req = await service(params);
+    const {afterService} = listener;
+    if(afterService){
+      console.log('[usePagination] afterService',req)
+      for(let i=0;i&lt;afterService.length;i++){
+        req = afterService[i](req);
+        if( typeof req?.then == 'function' ){
+          req = await req;
+        }
+      }
+    }
+    console.log('[usePagination] response',req)
+    let response={};
+    if(req?.code==0){
+      let {page:{current,pageSize,total},data:reqData} = req;
+      current=+current;
+      pageSize=+pageSize;
+      total=+total;
+      const startIdx= (current-1)*pageSize;
+      const more = current*pageSize&lt;total;
+      response.pagination={
+        current,pageSize,total,startIdx,more
+      };
+      setPagination(response.pagination);
+      response.data= clear?[]:(data||[]);
+
+      if(response.data.length&lt;current){
+        for(let i=0;i&lt;current;i++){
+          response.data[i]=response.data[i]||[];
+        }
+      }
+      let pageIdx= current-1;
+      response.data[pageIdx]= response.data[pageIdx]||[];
+      response.data[pageIdx]= reqData||[];
+      response.data=[...response.data];
+      setData(response.data);
+    }else{
+      setData(data||[]);
+    }
+    return response;
+  }
+
+  const nextPage= async ()=>{
+    if(!pagination.more){
+      return false;
+    }
+    return update({pagination:{current:pagination.current+1}})
+  }
+
+  const reset= ()=>{
+    return update({pagination:{current:1},clear:true})
+  }
+
+  const addListener=(type,fn)=>{
+    if(!refListener.current[type]){
+      refListener.current[type]=[];
+    }
+    
+    const repeat= refListener.current[type].some(callback=>{
+      if(callback==fn){return true;}
+      return false;
+    })
+    if(repeat){return;}
+    refListener.current[type].push(fn);
+  }
+
+  const removeListener=(type,fn)=>{
+    if(!refListener.current[type]){
+      refListener.current[type]=[];
+    }
+    let list = refListener.current[type];
+    for(let i=0;i&lt;list.length;i++){
+      if(list[i] == fn){
+        list.spice(i,1);
+      }
+    }
+  }
+
+  const action= useMemo(()=>{
+    return {
+      pagination,
+      update,
+      reset,
+      nextPage,
+      data,
+      addListener,
+      removeListener
+    }
+  },[pagination,data,refListener])
+
+  return action;
+}
+
+
+
+/**
+ * 分页信息
+ * @typedef {Object} Pagination
+ * @property {number} pageSize=20 - 分页大小
+ * @property {number} current=1 - 当前页码
+ * @property {number} total=1 - 总记录数
+ * @property {number} [startIdx=0] - 当前页面下第一条数据的序号
+ * @property {boolean} [more] - 是否还有下一页
+ * 
+ */
+
+
+/**
+ * 分页数据结果
+ * @typedef {Object} PageDataResult
+ * @property {Pagination} pagination - 最新分页信息
+ * @property {Object[][]} data - 分页数据集合
+ */
+
+
+
+/**
+ * 分页查询结果
+ * @typedef {callback} FunUpdate 
+ * @property {Pagination} [pagination] - 最新分页信息
+ * @property {boolean} [clear] - 是否清空数据
+ * @returns {Promise&lt;PageDataResult>} 最新的分页数据结果
+ */
+
+
+/**
+ * usePagination的返回对象
+ * @typedef {Object} UsePaginationResult
+ * @property {Object[][]} data - 分页数据集合
+ * @property {Pagination} paginnation - 分页信息
+ * @property {FunUpdate} update - 查询方法
+ * @property {FunUpdate} next - 获取下一页数据
+ * @property {function} addListener - 监听事件 (type='beforeService'|'afterService',fn:FunListener)=>object
+ * @property {function} removeListener - 移除监听事件 (type,fn:FunListener)=>void
+ */
+
+
+/**
+ * 事件监听方法
+ * @typedef {callback} FunListener
+ * @property {Object} params - 被拦截的数据对象
+ * @returns {Object|Promise&lt;Object>} 处理完毕的数据对象或者Promise
+ */
+
+
+export default usePagination;
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 27 2023 16:42:13 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

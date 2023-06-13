@@ -58,6 +58,8 @@
   * [webpack配置中path、publicPath、chunkFilename、filename区别](https://www.jianshu.com/p/9bece64c4f51)
   * [Nginx](/build/nginx.md)
   * [Npm](/build/npm.md)
+  * [使用JSDoc实现类型检查](/build/jsdoc.md)
+  
 * 移动端兼容
   * [IOS](/ios/README.md)
   * [Android](/android/README.md)

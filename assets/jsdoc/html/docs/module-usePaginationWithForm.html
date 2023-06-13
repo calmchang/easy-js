@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>usePaginationWithForm - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-useClipboard.html">useClipboard</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useClipboard.html#~useClipboard">useClipboard</a></li></ul></li><li><a href="module-useCounter.html">useCounter</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useCounter.html#~useCounter">useCounter</a></li></ul></li><li><a href="module-useDictionary.html">useDictionary</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useDictionary.html#~SET">SET</a></li><li data-type='method' style='display: none;'><a href="module-useDictionary.html#~useDictionary">useDictionary</a></li></ul></li><li><a href="module-usePagination.html">usePagination</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-usePagination.html#~usePagination">usePagination</a></li></ul></li><li><a href="module-usePaginationWithForm.html">usePaginationWithForm</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-usePaginationWithForm.html#~usePaginationWithForm">usePaginationWithForm</a></li></ul></li><li><a href="module-useSwitch.html">useSwitch</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-useSwitch.html#~useSwitch">useSwitch</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">usePaginationWithForm</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="usePaginationWithForm_index.js.html">usePaginationWithForm/index.js</a>, <a href="usePaginationWithForm_index.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="~usePaginationWithForm"><span class="type-signature type-signature-inner">(inner) </span>usePaginationWithForm<span class="signature">(props)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>支持Antd-Form的usePagination
+作用是在查询接口前自动获取form表单内的字段，并作为接口查询参数进行查询
+使用方法及参数字段参考 <code>usePagination</code></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="usePaginationWithForm_index.js.html">usePaginationWithForm/index.js</a>, <a href="usePaginationWithForm_index.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>const [form] = Form.useForm();
+const page = usePaginationWithForm({
+  service:GET_LIST,
+  pagination:{pageSize:10},
+  form:form
+});
+
+return(
+  &lt;Form form={form} style={{width:'600px'}} layout="inline">
+    &lt;Form.Item label='关键字' name='keyword' rules={[
+      {
+        max:5,
+        message:'最多5个字符'
+      }
+    ]}>
+      &lt;Input />
+    &lt;/Form.Item>
+    &lt;Button onClick={onSearch} type='primary'>查询&lt;/Button>
+    &lt;Button onClick={onReset} type='primary'>重置&lt;/Button>
+  &lt;/Form>
+)</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>form</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Form表单的ref，在接口调用前会校验获取form表单内的数据，提交到接口参数内查询</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 27 2023 16:42:13 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
