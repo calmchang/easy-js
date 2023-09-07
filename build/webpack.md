@@ -39,6 +39,7 @@ Math.add(1,2);
 
 ```
 
+
 ## 如何在引用第三方库的时候也能利用tree-shake
 
 假设有一个第三方库名字叫：`my-math`,其中内容如下
@@ -171,6 +172,12 @@ rules: [
 
 ```
 
+
+## 图片资源的按需加载  
+遇到动态引用图片的情况如： require(`@/assets/iamges/${lang}/${imageName}`)   
+由于webpack在生产构建时不能确定哪些资源目录会被引用，所以不会将图片输出到构建文件夹内  
+解决方法是通过在文件头部显示的调用 require.context('@/assets/images/tw/', false, /\.(png|jpg|jpeg|gif|svg)$/);  
+告知webpack这个文件夹下的所有哪类文件，我是需要使用的，请帮我输出到目标文件夹下
 
 
 ## 常用插件
