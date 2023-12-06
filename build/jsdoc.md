@@ -71,6 +71,32 @@
 ![](../assets/jsdoc/tips1-6.jpg)
 <!-- panels:end -->
 
+
+**useState对象的定义**
+<!-- panels:start -->
+<!-- div:left-panel -->
+使用前
+
+![](../assets/jsdoc/tips7-1.jpg)
+<!-- div:right-panel -->
+使用后
+
+![](../assets/jsdoc/tips7-2.jpg)
+<!-- panels:end -->
+
+**如何定义一个可扩展参数的对象**
+<!-- panels:start -->
+<!-- div:left-panel -->
+使用前:当一个对象调用一个没有在定义内出现的成员时，会报错
+
+![](../assets/jsdoc/tips8-1.jpg)
+<!-- div:right-panel -->
+使用后：允许存在非定义内出现的其它参数
+
+![](../assets/jsdoc/tips8-2.jpg)
+<!-- panels:end -->
+
+
 **可以看到，通过vscode内部集成的jsdoc的支持，我们使用jsodc注释规范对代码进行注释后，vscode可以发会更强大的智能提示，接近ts的效果，我们几乎可以使用jsdoc+jsconfig.json配置来替代ts**
 
 #### jsconfig.json
