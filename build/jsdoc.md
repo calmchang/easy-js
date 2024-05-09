@@ -97,6 +97,8 @@
 <!-- panels:end -->
 
 
+
+
 **可以看到，通过vscode内部集成的jsdoc的支持，我们使用jsodc注释规范对代码进行注释后，vscode可以发会更强大的智能提示，接近ts的效果，我们几乎可以使用jsdoc+jsconfig.json配置来替代ts**
 
 #### jsconfig.json
@@ -113,6 +115,89 @@
   }
 }
 ```
+
+
+#### 常用注释案例
+
+##### useRef
+```js
+  /**
+   * current存放number类型
+   * @type React.MutableRefObject<number|null>
+   */
+  const refTimer = useRef();
+
+```
+
+##### useState
+```js
+  /**
+   * disabled为bool类型的成员
+   * @type [boolean, React.Dispatch<React.SetStateAction<boolean>>]
+   */
+  const [disabled,setDisabled] = useState(false);
+
+```
+
+##### 可自行扩展任意成员属性的类型
+
+```js
+/**
+ * 可自行扩展任意数量的属性
+ * @typedef {Object<string, any>} OtherAny
+ */
+
+/**
+ * @typedef User
+ * @property {string} name - 姓名
+ */
+
+/**
+ * 这里代表 UserData类型为一个拥有name成员并且还可以拥有任意个其它任意属性的类型
+ * @typedef {User & OtherAny} UserData
+ */
+```
+
+##### 模版类型
+
+```js
+/**
+ * ServicesResponse这个对象，data对象为一个模版类型对象
+ * @template [T=object]
+ * @typedef {object} ServicesResponse
+ * @property {number} code - 接口处理结果,0为成功
+ * @property {T} data - 接口返回的数据
+ * @property {string} [msg] - 消息内容
+ */
+
+/**
+ * @typedef User
+ * @property {string} name - 姓名
+ */
+
+/**
+ * UserResponse这个类型就是结合了ServicesResponse并且data是User类型的对象
+ * @typedef {ServicesResponse<User>} UserResponse
+ */
+
+ ```
+
+##### 枚举类型
+```js
+// enum.js内内容
+export const ENUM_MESSAGE_TYPE={
+  Text:'text',
+  Audio:'audio'
+}
+/**
+ * 这里从外部enum.js内引入一个枚举类型对象
+ * @typedef ChatMessage
+ * @property {string} id - 用户ID
+ * @property {import('./enum').ENUM_MESSAGE_TYPE} type - 记录类型
+ */
+```
+
+
 
 
 #### 文档输出  
@@ -267,3 +352,6 @@ exports.formatAnchorName = function(text,option){
 * [JSDoc官方文档](https://jsdoc.app/index.html)
 * [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown)
 * [dmd](https://github.com/jsdoc2md/dmd)
+
+
+
