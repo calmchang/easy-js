@@ -96,6 +96,9 @@
 * 常见第三方库
   * [qs](/plugins/qs.md)
 
+* git
+  * [git环境](/git/setup.md)
+
 * 正则表达式
   * [正则](/reg/readme.md)
   * [正则表达式从入门到够用](https://www.jianshu.com/p/b029b45d8863)
