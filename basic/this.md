@@ -164,7 +164,7 @@ const obj={
 
 obj.fn1();// Window 
 obj.info.fn2();// Window ❓❓
-obj.info.fn1.call('cc');// Window 
+obj.fn1.call('cc');// Window 
 obj.info.fn2.call('cc');// Window 
 ```
 如果这里你也答对了，那么恭喜你，你可以在大部分场景下正确实战应用了🎉💐🌼   
