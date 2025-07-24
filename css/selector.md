@@ -37,7 +37,7 @@
 </body>
 ~~~
 <!-- [![](http://img.vuedata.cn/codesandboxicon1.png?imageView/2/w/32)](https://codesandbox.io/s/css-84ssw?file=/index.html) -->
-[![](http://img.vuedata.cn/codesandboxicon2.png?imageView/2/w/256)](https://codesandbox.io/s/css-84ssw?file=/index.html)
+[![](../assets/jsdoc/codesandboxicon2.png)](https://codesandbox.io/s/css-84ssw?file=/index.html)
 
 
 * `div>h3{color:red}`
@@ -61,7 +61,7 @@
     <h3>44</h3>
 </body>
 ~~~
-[![](http://img.vuedata.cn/codesandboxicon2.png?imageView/2/w/256)](https://codesandbox.io/s/brother3-l3ole)
+[![](../assets/jsdoc/codesandboxicon2.png)](https://codesandbox.io/s/brother3-l3ole)
 
 * `div h3{color:red}`
 匹配某父元素内的div元素内所有子元素是h3的(无论多少层嵌套)
@@ -84,7 +84,7 @@
     <h3>44</h3><!--不匹配-->
 </body>
 ~~~
-[![](http://img.vuedata.cn/codesandboxicon2.png?imageView/2/w/256)](https://codesandbox.io/s/brother2-74yi6?file=/index.html)
+[![](../assets/jsdoc/codesandboxicon2.png)](https://codesandbox.io/s/brother2-74yi6?file=/index.html)
 
 
 * `div+h3{color:red}`
@@ -105,7 +105,7 @@
     <h3>22<h3><!--不匹配-->
 </body>
 ~~~
-[![](http://img.vuedata.cn/codesandboxicon2.png?imageView/2/w/256)](https://codesandbox.io/s/brother4-rfx5b?file=/index.html)
+[![](../assets/jsdoc/codesandboxicon2.png)](https://codesandbox.io/s/brother4-rfx5b?file=/index.html)
 
 
 ##### 同时满足有类A和类B的DOM

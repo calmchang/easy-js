@@ -153,7 +153,7 @@ xhr.open('POST','跨域接口');
 xhr.send();
 ```
 
-![](http://img.vuedata.cn/iframecros.jpg)
+![](../assets/jsdoc/question/iframecros.jpg)
 
 1、你本地调试的站点地址为 `http://localhost:3000`     
 2、你需要调用的接口域名为 `http://api.test.com`  

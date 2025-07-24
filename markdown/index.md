@@ -333,10 +333,10 @@ time|string|阻塞时间(毫秒数)
 
 #### 图片
 
-![codesandbox](http://img.vuedata.cn/codesandboxicon1.png?imageMogr2/thumbnail/!30x)
+![codesandbox](../assets/jsdoc/codesandboxicon1.png)
 #### 图片超链接
 
-[![codesandbox](http://img.vuedata.cn/codesandboxicon1.png?imageMogr2/thumbnail/!30x)](https://codesandbox.io/s/useswitch-qd7dr?file=/index.js)
+[![codesandbox](../assets/jsdoc/codesandboxicon1.png)](https://codesandbox.io/s/useswitch-qd7dr?file=/index.js)
 
 
 #### 流程图 - mermaid图表

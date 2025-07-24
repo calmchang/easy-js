@@ -2,15 +2,15 @@
 
 ### @react组件生命周期
 
-![image](http://img.vuedata.cn/reactLifeCycle.png)
+![image](../assets/jsdoc/react/reactLifeCycle.png)
 
 ### @父子组件更新逻辑
 
-![image](http://img.vuedata.cn/howRender.png)
+![image](../assets/jsdoc/react/howRender.png)
 
 ### @父子函数式组件更新逻辑
 
-![image](http://img.vuedata.cn/funComponent.png)
+![image](../assets/jsdoc/react/funComponent.png)
 
 
 ### 函数式组件内模仿类组件生命周期

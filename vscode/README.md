@@ -2,12 +2,12 @@
 ## 基础操作
 #### 多行转一行
 
-![](http://img.vuedata.cn/vscode-ctrlJ.gif?imageView2/2/w/400)
+![](../assets/jsdoc/vscode/vscode-ctrlJ.gif)
 
 MAC: `ctrl + j`
 
 #### 单词选中 - 同鼠标双击
-![](http://img.vuedata.cn/20201130091631.png?imageView2/2/w/400)
+![](../assets/jsdoc/vscode/20201130091631.png)
 
 MAC: `command + d`
 
@@ -31,7 +31,7 @@ MAC: `option + 上/下` 光标在当前行任何位置都行
 MAC: `command + [` 或 `command + ]`
 
 #### 块选择vs
-![](http://img.vuedata.cn/vscode-shiftoption.gif?imageView2/2/w/400)
+![](../assets/jsdoc/vscode/vscode-shiftoption.gif)
 
 MAC: `shift + option + 鼠标拖动`
 
@@ -44,14 +44,14 @@ MAC: `shift + command + \`
 ## 窗口操作
 
 #### 打开/关闭 侧边栏
-![](http://img.vuedata.cn/vscode-cmdb.gif?imageView2/2/w/400)
+![](../assets/jsdoc/vscode/vscode-cmdb.gif)
 
 MAC: `command + b`
 
 ## 查找操作
 
 #### 在当前文件内查找变量和方法
-![](http://img.vuedata.cn/vscode-cmdr.gif?imageView2/2/w/800)
+![](../assets/jsdoc/vscode/vscode-cmdr.gif)
 
 MAC: `command + r`
 

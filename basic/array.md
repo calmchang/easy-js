@@ -83,11 +83,11 @@ var arr2=[1,4,5,2];
 ~~~
 
 ##### 数组遍历
-![数组遍历方法](http://img.vuedata.cn/arraymap.png)
+![数组遍历方法](../assets/jsdoc/array/arraymap.png)
 > 除了for是万精油，性能也最好外，其实其他几种方法都是针对不同场景下的，所以不用太纠结性能问题，只要选择适合自己的场景就行，杠精的话可以用for实现一切
 
 #### 常用数组数据的添加和获取
-![常用数组数据的添加和获取](http://img.vuedata.cn/arraygetpost2.png)
+![常用数组数据的添加和获取](../assets/jsdoc/array/arraygetpost2.png)
 
 ##### for...of，for...in,[...]区别
 

@@ -35,7 +35,7 @@
 * optionLabelProp  
   当多选的时候，控制选中的条目显示的内容，如下图，默认选中后显示的内容是`<Option>`中value的值，有时候我们想控制它显示的是其他属性的时候，则通过optionLabelProp来切换，比如optionLabelProp="label"时，则选中时显示的内容从`<Option label="cxx">`的label内获取
 
-![image.png](http://img.vuedata.cn/selectOptionLabelProp.png)
+![image.png](../assets/jsdoc/antd/selectOptionLabelProp.png)
 
 
 * placeholder无效  

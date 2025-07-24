@@ -67,7 +67,7 @@ async wide(node,fn){
 }
 ~~~
 
-![](http://img.vuedata.cn/algoDeepAndWidth.gif)
+![](../assets/jsdoc/basic/algorithmic/algoDeepAndWidth.gif)
 
 ##### 防抖
 * 原理：函数在调用倒计时n时间内没有重复调用，则执行函数，不然重新倒计时

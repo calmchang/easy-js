@@ -51,9 +51,9 @@ obj.age(23);
 
 
 ##### 原型链结构
-![原型链结构](http://img.vuedata.cn/prototype1.jpg)
+![原型链结构](../assets/jsdoc/basic/extend/prototype1.jpg)
 
-![通过代码看结构](http://img.vuedata.cn/prototype2.jpg)
+![通过代码看结构](../assets/jsdoc/basic/extend/prototype2.jpg)
 
 ##### 寄生继承方法
 特点：类似工厂模式，创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后返回对象。  
@@ -191,4 +191,4 @@ Father.prototype.id = '1001';
 而class内的普通变量声明`arr=xxx`则是在实例化后对象身上会单独复制一份的  
 
 
-![](http://img.vuedata.cn/classprotype.jpg)
+![](../assets/jsdoc/basic/extend/classprotype.jpg)

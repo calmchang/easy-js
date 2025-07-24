@@ -5,7 +5,7 @@
 
 先来看一张blob数据类型转换的闭环图，上面展示了和blob相关的数据类型关系图，我们将围绕这张图来学习blob的数据类型转换、存储、接口通信中的运用
 
-![](http://img.vuedata.cn/blob1.jpg)
+![](../assets/jsdoc/basic/blob/blob1.jpg)
 
 
 ### ArrayBuffer  
@@ -45,13 +45,13 @@
 
 总结：我们提到1个字节的时候代表就是一个8位的内存空间，不用把系统的位数考虑进去  
 在内存中，最小单位就是字节，就像下面图上内存的排列顺序：  
-![](http://img.vuedata.cn/byte.jpg)
+![](../assets/jsdoc/basic/blob/byte.jpg)
 
 ##### 有符号、无符号  
 1个字节的内存可以表示的最小和最大数值是`0-255`，对应16进制`0x00  ~  0xFF`  
 如果这1个字节是带符号的那么去掉第1位用来表示正负外，剩下只有7位可以使用，最小和最大值就变成了 `-128 ~ 127`
 
-![](http://img.vuedata.cn/byte2.jpg)
+![](../assets/jsdoc/basic/blob/byte2.jpg)
 
 
 
@@ -63,7 +63,7 @@ Uint8Array,Int8Array等9个对象统称为TypedArray，用来操作ArrayBuffer�
 2. 使用Int8Array来读取这4个字节时，代表用8位作为一个单位读取，那么结果正好是array[4]=[32,2,112,14];  
 3. 使用Int16Array来读取这4个字节时，代表用16位为一个单位读取，结果是array[2]=[8194,28686]，因为32和2这2个8位组成的16位二进制转换成十进制的结果是8194，以此类推  
 4. 理解了上面的转换方法，Int32Array就好理解了，它用1个32位单位读取，结果为array[1]=[537030670]  
-![](http://img.vuedata.cn/arraybuffer4.jpg)
+![](../assets/jsdoc/basic/blob/arraybuffer4.jpg)
 
 ### DataView  
 用于操作ArrayBuffer的工具类，特点是可以随意读取或写入任意位任意类型的数据。
@@ -99,7 +99,7 @@ view.setInt8(1,64);//从第1个字节开始，写入一个INT8值为64的数据,
 
 ### 数据类型转换
 
-![](http://img.vuedata.cn/blob1.jpg)
+![](../assets/jsdoc/basic/blob/blob1.jpg)
 
 回到闭环图上可以看到 ArrayBuffer、String、DataURL、DataView、TypedArray 这些对象可以直接转换为blob对象  
 而其中最常用的可能是 ArrayBuffer、String、DataURL，这3类了,下面我们逐一举例他们之间如何进行转换的

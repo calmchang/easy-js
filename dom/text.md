@@ -27,7 +27,7 @@
 ```
 
 下面是对照表  
-![](http://img.vuedata.cn/Xnip2022-07-13_12-42-04.jpg?imageMogr2/thumbnail/!1700x)
+![](../assets/jsdoc/dom/charcode.jpg)
 
 
 
@@ -52,7 +52,7 @@ innerHTML|所有继承自Element的对象|✅|✅|✅
 ## 节点的类型
 
 下面这张图是HTML元素之间的继承关系
-![](http://img.vuedata.cn/htmldom.jpg)
+![](../assets/jsdoc/dom/htmldom.jpg)
 
 我们案例中HTML内的对象基本分为2个类别,，左边的文本类和右边的HTML标签类  
 

@@ -101,7 +101,7 @@ null instanceof Object;                // false
 
 
 ##### 常用检测数据类型的方法
-![检测数据类型对比](http://img.vuedata.cn/typeoflist.png)
+![检测数据类型对比](../assets/jsdoc/typeoflist.png)
 > 总体来说要想很精准的判断target是否为某个类型，使用 target.constructor最为准确, typeof和Object.prototype.toString.call用来判断js常规类型比较好，其中后者更准确
 
 ##### 判断常规数据类型

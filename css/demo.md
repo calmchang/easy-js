@@ -45,7 +45,7 @@
   }
   ```
 * 效果图  
-  ![](http://img.vuedata.cn/ellipsis.jpg)
+  ![](../assets/jsdoc/css/ellipsis.jpg)
 
 
 #### 隐藏滚动条
