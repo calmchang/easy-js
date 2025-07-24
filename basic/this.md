@@ -110,7 +110,7 @@ tom.fn3(); // tom ❓❓
 那么对于普通函数有什么办法可以有规律的找出this是谁呢？  
 
 #### 一图搞懂：普通函数调用的变化原理如下图 
-![](http://img.vuedata.cn/fun.jpg)
+![](../assets/jsdoc/basic/this/fun.jpg)
 
 接下来解释下上面的图  
 普通函数我们使用万物皆call法解决  
@@ -190,7 +190,7 @@ obj.fn2.call('cc2');// Window ❓❓
 回到开始的问题，我们用一张图来演示箭头函数内部this指向的原理：
 > 如果图片小请放大窗口  
 
-![](http://img.vuedata.cn/arrowThis.png)
+![](../assets/jsdoc/basic/this/arrowThis.png)
 
 根据图片我们总结：
 1. 箭头函数内部的this在`定义时就确定`了它`来源于哪个函数作用域下的this`
