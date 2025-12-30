@@ -76,3 +76,16 @@ npm unpublish 包名@版本号
 7. 执行 `npm rm --global my-cli` 进行卸载
 
 
+
+### NPM最新鉴权相关
+
+### 打开2FA
+1. 在npm站点内Two-Factor Authentication 板块打开，并且选择chrome浏览器验证的方式
+2. 取个名称后会生成一个恢复码，下载保存在本地不要丢失
+3. terminal内Node >=18 ,npm >=9
+4. 使用npm login时会触发OTP，会激活浏览器用来校验登录
+
+### 创建token使本地发布可以不用校验动态验证码
+1.  npm站点内个人配置内的Access Tokens 创建一个token
+2. `vi ~/.npmrc`
+3. 增加`//registry.npmjs.org/:_authToken=YOUR_TOKEN`这一行，并且将YOUR_TOKEN替换成你的token
